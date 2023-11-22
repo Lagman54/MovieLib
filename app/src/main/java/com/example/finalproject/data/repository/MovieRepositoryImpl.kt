@@ -1,15 +1,11 @@
 package com.example.finalproject.data.repository
 
+import android.accounts.NetworkErrorException
 import com.example.finalproject.data.MovieApi
 import com.example.finalproject.data.model.MovieDetailsEntity
 import com.example.finalproject.data.model.MovieEntity
+import com.example.finalproject.data.model.VideoEntity
 import com.example.finalproject.domain.repository.MovieRepository
-import com.example.finalproject.presentation.model.Movie
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class MovieRepositoryImpl @Inject constructor(
@@ -22,6 +18,10 @@ class MovieRepositoryImpl @Inject constructor(
 
     override suspend fun getMovie(id: Int): MovieDetailsEntity {
         return api.getMovieDetails(id).mapToFullPosterPath()
+    }
+
+    override suspend fun getVideos(id: Int): List<VideoEntity> {
+        return api.getMovieVideos(id).videos
     }
 
 }

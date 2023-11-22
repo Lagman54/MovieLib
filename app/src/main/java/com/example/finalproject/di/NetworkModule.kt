@@ -52,7 +52,5 @@ object NetworkModule {
         return loggingInterceptor
     }
 
-    @Provides
-    @Singleton
-    fun provideMovieRepository(api: MovieApi): MovieRepository = MovieRepositoryImpl(api)
+
 }

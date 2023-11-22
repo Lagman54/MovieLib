@@ -53,16 +53,16 @@
             tools:text="The Batman" />
 
         <TextView
-            android:lineSpacingExtra="2sp"
-            android:maxLines="3"
-            android:ellipsize="end"
             android:id="@+id/trendingMovieDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginBottom="8dp"
-            android:textSize="14sp"
             android:background="@android:color/transparent"
+            android:ellipsize="end"
+            android:lineSpacingExtra="2sp"
+            android:maxLines="3"
+            android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@id/watchTrailerButton"
             tools:text="@string/batman_desc" />
 
@@ -90,6 +90,7 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="24dp"
             android:text="@string/top_picks_for_you"
+            android:textAllCaps="true"
             android:textSize="18sp"
             app:layout_constraintTop_toBottomOf="@id/trendingMoviePoster" />
 
@@ -98,7 +99,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintStart_toStartOf="parent"
@@ -112,6 +113,7 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="24dp"
             android:text="@string/most_popular"
+            android:textAllCaps="true"
             android:textSize="18sp"
             app:layout_constraintTop_toBottomOf="@id/recommendationsList" />
 
@@ -134,6 +136,7 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="24dp"
             android:text="@string/your_watch_list"
+            android:textAllCaps="true"
             android:textSize="18sp"
             app:layout_constraintTop_toBottomOf="@id/popularList" />
 
