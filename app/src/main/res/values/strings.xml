@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Final Project</string>
+    <string name="batman_desc">Batman is called to intervene when the mayor of Gotham City is murdered. Soon, his investigation leads him to uncover a web of corruption, linked to his own dark past.</string>
+    <string name="watch_trailer">WATCH TRAILER</string>
+    <string name="top_picks_for_you">Top Picks For You</string>
+    <string name="most_popular">Most Popular</string>
+    <string name="your_watch_list">Your Watch List</string>
+    <string name="watchlist">WATCHLIST</string>
+    <string name="custom">CUSTOM</string>
+    <string name="history">HISTORY</string>
+    <string name="personal">PERSONAL</string>
+    <string name="add_to_watchlist">Add To Watchlist</string>
+    <string name="rating">Average: %1$.1f</string>
+    <string name="home">Home</string>
+    <string name="my_lists">My Lists</string>
+    <string name="browse">Browse</string>
+</resources>

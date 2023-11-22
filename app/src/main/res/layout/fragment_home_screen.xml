@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/homeScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--  TODO FIND ANOTHER LOGO THAT LOOK LIKE LETTER 'O' -->
+        <com.example.finalproject.presentation.view.ToolbarView
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:drawable_start="@drawable/orange"
+            app:layout_constraintTop_toTopOf="parent"
+            app:toolbar_title="app title"
+            app:toolbar_title_color="@color/orange" />
+
+
+        <!-- TODO CROP TOP PART OF THE IMAGE -->
+        <ImageView
+            android:id="@+id/trendingMoviePoster"
+            android:layout_width="match_parent"
+            android:layout_height="480dp"
+            android:layout_marginTop="4dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            tools:src="@drawable/poster" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="375dp"
+            android:background="@drawable/shadow_bottom"
+            app:layout_constraintBottom_toBottomOf="@id/trendingMoviePoster" />
+
+        <TextView
+            android:id="@+id/trendingMovieTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/transparent"
+            android:textAllCaps="true"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/trendingMovieDescription"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="The Batman" />
+
+        <TextView
+            android:lineSpacingExtra="2sp"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:id="@+id/trendingMovieDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="8dp"
+            android:textSize="14sp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toTopOf="@id/watchTrailerButton"
+            tools:text="@string/batman_desc" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/watchTrailerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
+            android:paddingHorizontal="16dp"
+            android:text="@string/watch_trailer"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:cornerRadius="0dp"
+            app:icon="@drawable/baseline_play_arrow_24"
+            app:iconSize="28dp"
+            app:iconTint="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/trendingMoviePoster"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/recommendationsText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/top_picks_for_you"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/trendingMoviePoster" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recommendationsList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recommendationsText"
+            tools:listitem="@layout/item_vertical_movie" />
+
+        <TextView
+            android:id="@+id/mostPopularText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/most_popular"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/recommendationsList" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/popularList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mostPopularText"
+            tools:listitem="@layout/item_vertical_movie" />
+
+        <TextView
+            android:id="@+id/watchListText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/your_watch_list"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/popularList" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/watchList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/bottomSpace"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/watchListText"
+            tools:listitem="@layout/item_vertical_movie" />
+
+        <View
+            android:id="@+id/bottomSpace"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

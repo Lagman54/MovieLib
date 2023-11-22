@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ToolbarView">
+
+        <attr name="toolbar_title" format="string"/>
+        <attr name="toolbar_title_color" format="color"/>
+        <attr name="drawable_start_visibility" format="boolean"/>
+        <attr name="drawable_start" format="reference"/>
+        <attr name="drawable_end" format="reference" />
+        <attr name="drawable_end_visibility" format="boolean" />
+
+    </declare-styleable>
+
+</resources>
