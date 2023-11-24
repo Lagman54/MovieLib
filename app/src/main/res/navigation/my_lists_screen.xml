@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/myListsFragment"
-        android:name="com.example.finalproject.presentation.fragments.MyListsFragment"
+        android:name="com.example.finalproject.presentation.screen.my_lists.MyListsFragment"
         android:label="MyListsFragment" >
         <action
             android:id="@+id/action_myListsFragment_to_personalListFragment"
@@ -25,11 +25,11 @@
     </fragment>
     <fragment
         android:id="@+id/movieDetailsFragment2"
-        android:name="com.example.finalproject.presentation.fragments.MovieDetailsFragment"
+        android:name="com.example.finalproject.presentation.screen.detail.MovieDetailsFragment"
         android:label="MovieDetailsFragment" />
     <fragment
         android:id="@+id/personalListFragment"
-        android:name="com.example.finalproject.presentation.fragments.my_lists.PersonalListFragment"
+        android:name="com.example.finalproject.presentation.screen.my_lists.PersonalListFragment"
         android:label="PersonalListFragment" >
         <action
             android:id="@+id/action_personalListFragment_to_movieDetailsFragment2"

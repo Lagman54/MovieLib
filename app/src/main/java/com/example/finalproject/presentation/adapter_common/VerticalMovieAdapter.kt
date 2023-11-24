@@ -1,46 +1,45 @@
-package com.example.finalproject.presentation.adapter
+package com.example.finalproject.presentation.adapter_common
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.finalproject.databinding.ItemHorizontalMovieBinding
+import com.example.finalproject.databinding.ItemVerticalMovieBinding
 import com.example.finalproject.presentation.OnMovieClickListener
+import com.example.finalproject.presentation.image_loader.ImageLoader
 import com.example.finalproject.presentation.model.Movie
 
-class HorizontalMovieAdapter :
-    ListAdapter<Movie, HorizontalMovieAdapter.ViewHolder>(DiffUtilCallback) {
+
+class VerticalMovieAdapter (
+    private val imageLoader: ImageLoader
+) : ListAdapter<Movie, VerticalMovieAdapter.ViewHolder>(DiffUtilCallback) {
 
     var onClick: OnMovieClickListener? = null
 
     class ViewHolder(
-        private val binding: ItemHorizontalMovieBinding,
-        private val onClick: OnMovieClickListener?
+        private val binding: ItemVerticalMovieBinding,
+        private val onClick: OnMovieClickListener?,
+        private val imageLoader: ImageLoader
     ) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(listItem: Movie) = with(binding) {
-            title.text = listItem.title
-            posterImage.setImageResource(listItem.posterRes)
-            genres.text = listItem.genre
-            rating.text = listItem.rating.toString()
+            imageLoader.load(posterImage, listItem.posterUrl)
 
+            title.text = listItem.title
             root.setOnClickListener {
                 onClick?.click(listItem.id)
             }
         }
     }
 
-    override fun getItemCount(): Int = currentList.size
+    override fun getItemCount() = currentList.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            ItemHorizontalMovieBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            ),
-            onClick
+            ItemVerticalMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+            onClick,
+            imageLoader
         )
     }
 
@@ -57,5 +56,4 @@ class HorizontalMovieAdapter :
             return oldItem == newItem
         }
     }
-
 }

@@ -1,16 +1,14 @@
-package com.example.finalproject.presentation.adapter.movie_details
+package com.example.finalproject.presentation.screen.detail.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalproject.databinding.ItemDetailsBodyBinding
 import com.example.finalproject.databinding.ItemDetailsHeaderBinding
 import com.example.finalproject.databinding.ItemDetailsViewpagerBinding
-import com.example.finalproject.presentation.adapter.movie_details.ListItem.Companion.BODY
-import com.example.finalproject.presentation.adapter.movie_details.ListItem.Companion.HEADER
-import com.example.finalproject.presentation.adapter.movie_details.ListItem.Companion.VIEWPAGER
+import com.example.finalproject.presentation.screen.detail.adapter.ListItem.Companion.BODY
+import com.example.finalproject.presentation.screen.detail.adapter.ListItem.Companion.HEADER
+import com.example.finalproject.presentation.screen.detail.adapter.ListItem.Companion.VIEWPAGER
 
 class MovieDetailsAdapter(
     private val itemList: MutableList<ListItem> = mutableListOf()

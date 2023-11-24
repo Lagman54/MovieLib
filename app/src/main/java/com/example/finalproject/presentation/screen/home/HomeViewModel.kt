@@ -1,12 +1,10 @@
-package com.example.finalproject.presentation.viewModel
+package com.example.finalproject.presentation.screen.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.finalproject.data.model.MovieEntity
-import com.example.finalproject.data.model.VideoEntity
-import com.example.finalproject.data.repository.mapToFullPosterPath
 import com.example.finalproject.domain.repository.MovieRepository
 import com.example.finalproject.presentation.mapToPresentation
 import com.example.finalproject.presentation.model.Movie

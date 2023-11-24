@@ -1,4 +1,4 @@
-package com.example.finalproject.presentation.fragments.my_lists
+package com.example.finalproject.presentation.screen.my_lists
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,11 +8,11 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.finalproject.R
-import com.example.finalproject.presentation.adapter.HorizontalMovieAdapter
+import com.example.finalproject.presentation.adapter_common.HorizontalMovieAdapter
 import com.example.finalproject.databinding.FragmentPersonalListBinding
 import com.example.finalproject.presentation.OnMovieClickListener
 import com.example.finalproject.presentation.decoration.OffsetDecoration
-import com.example.finalproject.presentation.fragments.MovieDetailsFragment
+import com.example.finalproject.presentation.screen.detail.MovieDetailsFragment
 import com.example.finalproject.presentation.model.Movie
 
 class PersonalListFragment : Fragment() {

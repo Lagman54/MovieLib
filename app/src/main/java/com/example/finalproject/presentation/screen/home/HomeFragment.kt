@@ -1,21 +1,19 @@
-package com.example.finalproject.presentation.fragments
+package com.example.finalproject.presentation.screen.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.finalproject.R
-import com.example.finalproject.presentation.adapter.VerticalMovieAdapter
+import com.example.finalproject.presentation.adapter_common.VerticalMovieAdapter
 import com.example.finalproject.databinding.FragmentHomeScreenBinding
 import com.example.finalproject.presentation.OnMovieClickListener
 import com.example.finalproject.presentation.decoration.OffsetDecoration
-import com.example.finalproject.presentation.image.ImageLoader
-import com.example.finalproject.presentation.viewModel.HomeViewModel
+import com.example.finalproject.presentation.screen.detail.MovieDetailsFragment
+import com.example.finalproject.presentation.image_loader.ImageLoader
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

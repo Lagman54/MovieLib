@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.finalproject.presentation.fragments.HomeFragment"
+        android:name="com.example.finalproject.presentation.screen.home.HomeFragment"
         android:label="HomeFragment" >
         <action
             android:id="@+id/action_homeFragment_to_movieDetailsFragment"
@@ -18,6 +18,6 @@
     </fragment>
     <fragment
         android:id="@+id/movieDetailsFragment"
-        android:name="com.example.finalproject.presentation.fragments.MovieDetailsFragment"
+        android:name="com.example.finalproject.presentation.screen.detail.MovieDetailsFragment"
         android:label="MovieDetailsFragment" />
 </navigation>

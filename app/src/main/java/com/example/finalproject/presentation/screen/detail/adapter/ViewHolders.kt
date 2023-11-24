@@ -1,11 +1,11 @@
-package com.example.finalproject.presentation.adapter.movie_details
+package com.example.finalproject.presentation.screen.detail.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalproject.R
 import com.example.finalproject.databinding.ItemDetailsBodyBinding
 import com.example.finalproject.databinding.ItemDetailsHeaderBinding
 import com.example.finalproject.databinding.ItemDetailsViewpagerBinding
-import com.example.finalproject.presentation.adapter.UserListsViewPagerAdapter
+import com.example.finalproject.presentation.screen.my_lists.adapter.UserListsViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
 class HeaderViewHolder(private val binding: ItemDetailsHeaderBinding) :

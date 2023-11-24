@@ -1,4 +1,4 @@
-package com.example.finalproject.presentation.adapter.movie_details
+package com.example.finalproject.presentation.screen.detail.adapter
 
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle

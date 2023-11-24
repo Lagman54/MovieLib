@@ -1,4 +1,4 @@
-package com.example.finalproject.presentation.fragments.my_lists
+package com.example.finalproject.presentation.screen.my_lists
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.finalproject.R
-import com.example.finalproject.presentation.adapter.PersonalAdapter
+import com.example.finalproject.presentation.screen.my_lists.adapter.PersonalAdapter
 import com.example.finalproject.databinding.FragmentPersonalBinding
 import com.example.finalproject.presentation.OnMovieClickListener
 import com.example.finalproject.presentation.decoration.OffsetDecoration

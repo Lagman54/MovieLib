@@ -1,13 +1,9 @@
 package com.example.finalproject.presentation.decoration
 
-import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Rect
 import android.view.View
-import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalproject.dp
-import com.example.finalproject.presentation.adapter.movie_details.HeaderViewHolder
 
 class OffsetDecoration(start: Int = 0, top: Int = 0, end: Int = 0, bottom: Int = 0) :
     RecyclerView.ItemDecoration() {

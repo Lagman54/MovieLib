@@ -1,4 +1,4 @@
-package com.example.finalproject.presentation.adapter
+package com.example.finalproject.presentation.screen.my_lists.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

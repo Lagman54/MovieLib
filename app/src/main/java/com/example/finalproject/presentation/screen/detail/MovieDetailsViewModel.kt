@@ -1,4 +1,4 @@
-package com.example.finalproject.presentation.viewModel
+package com.example.finalproject.presentation.screen.detail
 
 import android.util.Log
 import androidx.lifecycle.LiveData

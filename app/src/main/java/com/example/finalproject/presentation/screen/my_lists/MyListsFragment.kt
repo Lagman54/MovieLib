@@ -1,17 +1,13 @@
-package com.example.finalproject.presentation.fragments
+package com.example.finalproject.presentation.screen.my_lists
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import com.example.finalproject.R
-import com.example.finalproject.presentation.adapter.UserListsViewPagerAdapter
+import com.example.finalproject.presentation.screen.my_lists.adapter.UserListsViewPagerAdapter
 import com.example.finalproject.databinding.FragmentMyListsBinding
-import com.example.finalproject.presentation.view.ToolbarView
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayout.Tab
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 

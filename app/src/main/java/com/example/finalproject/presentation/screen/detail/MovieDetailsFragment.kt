@@ -1,4 +1,4 @@
-package com.example.finalproject.presentation.fragments
+package com.example.finalproject.presentation.screen.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,11 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.finalproject.databinding.FragmentMovieDetailsBinding
-import com.example.finalproject.presentation.adapter.movie_details.ListItem
-import com.example.finalproject.presentation.adapter.movie_details.MovieDetailsAdapter
-import com.example.finalproject.presentation.image.ImageLoader
+import com.example.finalproject.presentation.image_loader.ImageLoader
 import com.example.finalproject.presentation.model.MovieDetails
-import com.example.finalproject.presentation.viewModel.MovieDetailsViewModel
+import com.example.finalproject.presentation.screen.detail.adapter.ListItem
+import com.example.finalproject.presentation.screen.detail.adapter.MovieDetailsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
