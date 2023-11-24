@@ -29,7 +29,6 @@ class HomeFragment : Fragment() {
     @Inject
     lateinit var imageLoader: ImageLoader
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
