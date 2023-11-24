@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalproject.databinding.ItemHorizontalMovieBinding
 import com.example.finalproject.presentation.OnMovieClickListener
-import com.example.finalproject.presentation.model.Movie
+import com.example.finalproject.domain.model.Movie
 
 class HorizontalMovieAdapter :
     ListAdapter<Movie, HorizontalMovieAdapter.ViewHolder>(DiffUtilCallback) {

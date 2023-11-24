@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.finalproject.databinding.ItemVerticalMovieBinding
 import com.example.finalproject.presentation.OnMovieClickListener
 import com.example.finalproject.presentation.image_loader.ImageLoader
-import com.example.finalproject.presentation.model.Movie
+import com.example.finalproject.domain.model.Movie
 
 
 class VerticalMovieAdapter (

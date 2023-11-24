@@ -1,13 +1,12 @@
 package com.example.finalproject.presentation.screen.detail
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.finalproject.domain.repository.MovieRepository
-import com.example.finalproject.presentation.mapToPresentation
-import com.example.finalproject.presentation.model.MovieDetails
+import com.example.finalproject.data.mapper.mapToDomain
+import com.example.finalproject.domain.model.MovieDetails
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,7 +25,7 @@ class MovieDetailsViewModel @Inject constructor(private val repository: MovieRep
         viewModelScope.launch(Dispatchers.IO) {
             val movieDetails = repository.getMovie(id)
             withContext(Dispatchers.Main) {
-                _movieDetails.value = movieDetails.mapToPresentation()
+                _movieDetails.value = movieDetails
             }
         }
 

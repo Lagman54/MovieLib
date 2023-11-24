@@ -1,4 +1,4 @@
-package com.example.finalproject.presentation.model
+package com.example.finalproject.domain.model
 
 data class PersonalListItem(
     val id: Int,

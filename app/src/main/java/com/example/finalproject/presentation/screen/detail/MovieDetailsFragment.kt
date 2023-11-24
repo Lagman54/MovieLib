@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.finalproject.databinding.FragmentMovieDetailsBinding
 import com.example.finalproject.presentation.image_loader.ImageLoader
-import com.example.finalproject.presentation.model.MovieDetails
+import com.example.finalproject.domain.model.MovieDetails
 import com.example.finalproject.presentation.screen.detail.adapter.ListItem
 import com.example.finalproject.presentation.screen.detail.adapter.MovieDetailsAdapter
 import dagger.hilt.android.AndroidEntryPoint

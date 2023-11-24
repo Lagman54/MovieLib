@@ -12,7 +12,7 @@ import com.example.finalproject.databinding.FragmentWatchListBinding
 import com.example.finalproject.presentation.OnMovieClickListener
 import com.example.finalproject.presentation.decoration.OffsetDecoration
 import com.example.finalproject.presentation.screen.detail.MovieDetailsFragment
-import com.example.finalproject.presentation.model.Movie
+import com.example.finalproject.domain.model.Movie
 
 class WatchListFragment : Fragment() {
 

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalproject.databinding.ItemPersonalListBinding
 import com.example.finalproject.presentation.OnMovieClickListener
-import com.example.finalproject.presentation.model.PersonalListItem
+import com.example.finalproject.domain.model.PersonalListItem
 
 class PersonalAdapter :
     ListAdapter<PersonalListItem, PersonalAdapter.ViewHolder>(PersonalDiffUtils) {

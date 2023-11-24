@@ -11,7 +11,7 @@ import com.example.finalproject.presentation.screen.my_lists.adapter.PersonalAda
 import com.example.finalproject.databinding.FragmentPersonalBinding
 import com.example.finalproject.presentation.OnMovieClickListener
 import com.example.finalproject.presentation.decoration.OffsetDecoration
-import com.example.finalproject.presentation.model.PersonalListItem
+import com.example.finalproject.domain.model.PersonalListItem
 
 
 class PersonalFragment : Fragment() {

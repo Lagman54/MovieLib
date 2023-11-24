@@ -16,7 +16,7 @@ data class MovieDetailsEntity(
     @SerializedName("vote_count")
     val voteCount: Int,
     @SerializedName("genres")
-    val genres: List<Genre>,
+    val genres: List<GenreEntity>,
     @SerializedName("vote_average")
     val rating: Float,
 )

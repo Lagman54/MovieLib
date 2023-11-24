@@ -1,14 +1,14 @@
 package com.example.finalproject.domain.repository
 
-import com.example.finalproject.data.model.MovieDetailsEntity
-import com.example.finalproject.data.model.MovieEntity
-import com.example.finalproject.data.model.VideoEntity
+import com.example.finalproject.domain.model.Movie
+import com.example.finalproject.domain.model.MovieDetails
+import com.example.finalproject.domain.model.Video
 
 interface MovieRepository {
 
-    suspend fun getPopularMovies(): List<MovieEntity>
+    suspend fun getPopularMovies(): List<Movie>
 
-    suspend fun getMovie(id: Int): MovieDetailsEntity
+    suspend fun getMovie(id: Int): MovieDetails
 
-    suspend fun getVideos(id: Int): List<VideoEntity>
+    suspend fun getVideos(id: Int): List<Video>
 }

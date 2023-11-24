@@ -1,6 +1,6 @@
-package com.example.finalproject.presentation.model
+package com.example.finalproject.domain.model
 
-import com.example.finalproject.data.model.Genre
+import com.example.finalproject.data.model.GenreEntity
 
 
 data class MovieDetails(

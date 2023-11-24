@@ -1,9 +1,8 @@
 package com.example.finalproject.di
 
 import com.example.finalproject.BuildConfig
+import com.example.finalproject.common.Const.Api.BASE_URL
 import com.example.finalproject.data.MovieApi
-import com.example.finalproject.data.repository.MovieRepositoryImpl
-import com.example.finalproject.domain.repository.MovieRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,8 +16,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
-
-    private const val BASE_URL = "https://api.themoviedb.org/"
 
     @Provides
     @Singleton

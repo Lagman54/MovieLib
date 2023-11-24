@@ -6,10 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.finalproject.data.model.MovieEntity
 import com.example.finalproject.domain.repository.MovieRepository
-import com.example.finalproject.presentation.mapToPresentation
-import com.example.finalproject.presentation.model.Movie
-import com.example.finalproject.presentation.model.MovieDetails
-import com.example.finalproject.presentation.model.Video
+import com.example.finalproject.data.mapper.mapToDomain
+import com.example.finalproject.domain.model.Movie
+import com.example.finalproject.domain.model.MovieDetails
+import com.example.finalproject.domain.model.Video
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -40,9 +40,9 @@ class HomeViewModel @Inject constructor(
             val trendingMovie = repository.getMovie(movies[0].id)
             withContext(Dispatchers.Main) {
                 _userRecommendations.value =
-                    movies.map(MovieEntity::mapToPresentation)
+                    movies
                         .subList(1, 12)
-                _trendingMovie.value = trendingMovie.mapToPresentation()
+                _trendingMovie.value = trendingMovie
             }
         }
     }
