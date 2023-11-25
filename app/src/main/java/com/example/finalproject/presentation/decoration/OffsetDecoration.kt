@@ -3,7 +3,7 @@ package com.example.finalproject.presentation.decoration
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.example.finalproject.dp
+import com.example.finalproject.common.dp
 
 class OffsetDecoration(start: Int = 0, top: Int = 0, end: Int = 0, bottom: Int = 0) :
     RecyclerView.ItemDecoration() {

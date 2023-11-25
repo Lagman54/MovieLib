@@ -14,4 +14,6 @@
     <string name="home">Home</string>
     <string name="my_lists">My Lists</string>
     <string name="browse">Browse</string>
+    <string name="popular">Popular</string>
+    <string name="movie_genres">movie genres</string>
 </resources>

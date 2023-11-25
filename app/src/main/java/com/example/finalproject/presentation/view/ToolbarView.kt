@@ -1,17 +1,14 @@
 package com.example.finalproject.presentation.view
 
 import android.content.Context
-import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import com.example.finalproject.R
 import com.example.finalproject.databinding.ViewToolbarBinding
-import com.example.finalproject.setAttrs
-import com.google.android.material.tabs.TabLayout
+import com.example.finalproject.common.setAttrs
 
 class ToolbarView @JvmOverloads constructor(
     context: Context,

@@ -2,6 +2,7 @@ package com.example.finalproject.data.mapper
 
 import com.example.finalproject.common.Const.Api.IMAGE_URL
 import com.example.finalproject.common.Const.Api.YOUTUBE_URL
+import com.example.finalproject.common.Const.Api.genres
 import com.example.finalproject.data.model.GenreEntity
 import com.example.finalproject.data.model.MovieDetailsEntity
 import com.example.finalproject.data.model.MovieEntity
@@ -17,7 +18,7 @@ fun MovieEntity.mapToDomain(): Movie {
         title = this.title,
         posterUrl = IMAGE_URL + this.posterPath,
         rating = this.rating,
-        genre = ""
+        genre = getGenres(genreIds)
     )
 }
 
@@ -47,4 +48,12 @@ fun VideoEntity.mapToDomain(): Video {
         name = this.name,
         url = YOUTUBE_URL + this.key
     )
+}
+
+private fun getGenres(ids: List<Int>): String {
+    return when(ids.size) {
+        0 -> ""
+        1 -> genres[ids[0]] + ""
+        else -> genres[ids[0]] + ", " + genres[ids[1]]
+    }
 }

@@ -9,6 +9,7 @@ data class Movie(
     val posterUrl: String ="",
     val rating: Float = 5.0f,
     val genre: String = "Action, Comedy",
+    // TODO delete this in the future
     @DrawableRes
     val posterRes: Int = R.drawable.poster
 )

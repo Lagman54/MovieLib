@@ -12,8 +12,6 @@
         android:adjustViewBounds="true"
         tools:src="@drawable/poster" />
 
-
-<!--  TODO how to handle text that goes beyond right bound of image view?  -->
     <TextView
         android:textStyle="bold"
         android:maxWidth="145dp"

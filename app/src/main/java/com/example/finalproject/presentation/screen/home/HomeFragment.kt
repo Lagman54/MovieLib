@@ -10,14 +10,12 @@ import androidx.navigation.fragment.findNavController
 import com.example.finalproject.R
 import com.example.finalproject.presentation.adapter_common.VerticalMovieAdapter
 import com.example.finalproject.databinding.FragmentHomeScreenBinding
-import com.example.finalproject.presentation.OnMovieClickListener
+import com.example.finalproject.presentation.adapter_common.OnMovieClickListener
 import com.example.finalproject.presentation.decoration.OffsetDecoration
 import com.example.finalproject.presentation.screen.detail.MovieDetailsFragment
 import com.example.finalproject.presentation.image_loader.ImageLoader
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
-
-// TODO try to come up with BaseFragment, because you have too much identical code between fragments
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -28,7 +26,6 @@ class HomeFragment : Fragment() {
 
     @Inject
     lateinit var imageLoader: ImageLoader
-
 
     override fun onCreateView(
         inflater: LayoutInflater,

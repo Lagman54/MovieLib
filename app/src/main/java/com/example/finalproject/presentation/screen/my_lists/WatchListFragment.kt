@@ -9,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.finalproject.R
 import com.example.finalproject.presentation.adapter_common.HorizontalMovieAdapter
 import com.example.finalproject.databinding.FragmentWatchListBinding
-import com.example.finalproject.presentation.OnMovieClickListener
+import com.example.finalproject.presentation.adapter_common.OnMovieClickListener
 import com.example.finalproject.presentation.decoration.OffsetDecoration
 import com.example.finalproject.presentation.screen.detail.MovieDetailsFragment
 import com.example.finalproject.domain.model.Movie

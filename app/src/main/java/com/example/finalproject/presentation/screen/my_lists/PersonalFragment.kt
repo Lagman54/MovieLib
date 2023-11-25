@@ -9,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.finalproject.R
 import com.example.finalproject.presentation.screen.my_lists.adapter.PersonalAdapter
 import com.example.finalproject.databinding.FragmentPersonalBinding
-import com.example.finalproject.presentation.OnMovieClickListener
+import com.example.finalproject.presentation.adapter_common.OnMovieClickListener
 import com.example.finalproject.presentation.decoration.OffsetDecoration
 import com.example.finalproject.domain.model.PersonalListItem
 

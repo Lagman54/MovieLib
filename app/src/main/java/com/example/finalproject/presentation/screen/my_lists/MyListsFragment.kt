@@ -29,19 +29,16 @@ class MyListsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // TODO check if you need to use viewLifecycleOwner.lifecycle
         adapter = UserListsViewPagerAdapter(childFragmentManager, lifecycle)
 
         binding.viewPager.adapter = adapter
         binding.viewPager.offscreenPageLimit = 2
 
         TabLayoutMediator(binding.tabLayoutBinding.topTab, binding.viewPager) { tab, position ->
-
             when(position) {
                 0 -> tab.text = getString(R.string.watchlist)
                 1 -> tab.text = getString(R.string.personal)
                 2 -> tab.text = getString(R.string.history)
-                else -> null
             }
 
         }.attach()
