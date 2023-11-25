@@ -1,15 +1,18 @@
 package com.example.finalproject.presentation.screen.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.finalproject.R
 import com.example.finalproject.presentation.adapter_common.VerticalMovieAdapter
 import com.example.finalproject.databinding.FragmentHomeScreenBinding
+import com.example.finalproject.domain.model.MovieDetails
 import com.example.finalproject.presentation.adapter_common.OnMovieClickListener
 import com.example.finalproject.presentation.decoration.OffsetDecoration
 import com.example.finalproject.presentation.screen.detail.MovieDetailsFragment
@@ -39,29 +42,11 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUpTrendingMovie()
-        setUpLists()
+        setUpAdapters()
+        setUpViewModel()
     }
 
-    private fun setUpTrendingMovie() = with(binding) {
-
-        viewModel.trendingMovie.observe(viewLifecycleOwner) {movieDetails ->
-            imageLoader.load(trendingMoviePoster, movieDetails.posterUrl)
-            trendingMovieTitle.text = movieDetails.title
-            trendingMovieDescription.text = movieDetails.description
-
-            trendingMoviePoster.setOnClickListener {
-                findNavController().navigate(
-                    R.id.action_homeFragment_to_movieDetailsFragment,
-                    MovieDetailsFragment.createBundle(id = movieDetails.id)
-                )
-            }
-        }
-
-    }
-
-    private fun setUpLists() = with(binding) {
-
+    private fun setUpAdapters() = with(binding) {
         recommendationsAdapter = VerticalMovieAdapter(imageLoader)
         recommendationsAdapter.onClick = OnMovieClickListener { movieId ->
             findNavController().navigate(
@@ -77,12 +62,37 @@ class HomeFragment : Fragment() {
         recommendationsList.adapter = recommendationsAdapter
         popularList.adapter = recommendationsAdapter
         watchList.adapter = recommendationsAdapter
+    }
 
+    private fun setUpViewModel() = with(binding) {
         viewModel.userRecommendations.observe(viewLifecycleOwner) {
             recommendationsAdapter.submitList(it)
         }
 
+        viewModel.trendingMovie.observe(viewLifecycleOwner) { movieDetails ->
+            imageLoader.load(trendingMoviePoster, movieDetails.posterUrl)
+            trendingMovieTitle.text = movieDetails.title
+            trendingMovieDescription.text = movieDetails.description
+
+            trendingMoviePoster.setOnClickListener {
+                findNavController().navigate(
+                    R.id.action_homeFragment_to_movieDetailsFragment,
+                    MovieDetailsFragment.createBundle(id = movieDetails.id)
+                )
+            }
+
+            viewModel.getTrendingMovieTrailer(movieDetails.id)
+        }
+
+        viewModel.trendingMovieTrailer.observe(viewLifecycleOwner) { trailer ->
+            watchTrailerButton.setOnClickListener {
+                startActivity(Intent(Intent.ACTION_VIEW, trailer.url.toUri()))
+            }
+        }
+
         viewModel.getRecommendations()
     }
+
+
 
 }

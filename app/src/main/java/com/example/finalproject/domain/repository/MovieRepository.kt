@@ -3,6 +3,7 @@ package com.example.finalproject.domain.repository
 import androidx.paging.PagingData
 import com.example.finalproject.domain.model.Movie
 import com.example.finalproject.domain.model.MovieDetails
+import com.example.finalproject.domain.model.Trailer
 import com.example.finalproject.domain.model.Video
 import kotlinx.coroutines.flow.Flow
 
@@ -13,6 +14,8 @@ interface MovieRepository {
     suspend fun getMovie(id: Int): MovieDetails
 
     suspend fun getVideos(id: Int): List<Video>
+
+    suspend fun getTrailers(id: Int): List<Trailer>
 
     fun getMovies(): Flow<PagingData<Movie>>
 }

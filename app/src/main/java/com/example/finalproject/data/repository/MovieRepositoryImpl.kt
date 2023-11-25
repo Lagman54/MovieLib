@@ -8,10 +8,12 @@ import com.example.finalproject.common.Const.Api.MOVIES_PAGE_SIZE
 import com.example.finalproject.data.MovieApi
 import com.example.finalproject.data.data_source.MoviePagingSource
 import com.example.finalproject.data.mapper.mapToDomain
+import com.example.finalproject.data.mapper.mapToTrailer
 import com.example.finalproject.data.model.MovieEntity
 import com.example.finalproject.data.model.VideoEntity
 import com.example.finalproject.domain.model.Movie
 import com.example.finalproject.domain.model.MovieDetails
+import com.example.finalproject.domain.model.Trailer
 import com.example.finalproject.domain.model.Video
 import com.example.finalproject.domain.repository.MovieRepository
 import kotlinx.coroutines.flow.Flow
@@ -32,6 +34,10 @@ class MovieRepositoryImpl @Inject constructor(
 
     override suspend fun getVideos(id: Int): List<Video> {
         return api.getMovieVideos(id).videos.map(VideoEntity::mapToDomain)
+    }
+
+    override suspend fun getTrailers(id: Int): List<Trailer> {
+        return api.getMovieVideos(id).videos.map(VideoEntity::mapToTrailer)
     }
 
     override fun getMovies(): Flow<PagingData<Movie>> {

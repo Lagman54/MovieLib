@@ -10,6 +10,7 @@ import com.example.finalproject.data.model.VideoEntity
 import com.example.finalproject.domain.model.Genre
 import com.example.finalproject.domain.model.Movie
 import com.example.finalproject.domain.model.MovieDetails
+import com.example.finalproject.domain.model.Trailer
 import com.example.finalproject.domain.model.Video
 
 fun MovieEntity.mapToDomain(): Movie {
@@ -45,6 +46,13 @@ fun GenreEntity.mapToDomain(): Genre {
 fun VideoEntity.mapToDomain(): Video {
     return Video(
         type = this.type,
+        name = this.name,
+        url = YOUTUBE_URL + this.key
+    )
+}
+
+fun VideoEntity.mapToTrailer(): Trailer {
+    return Trailer(
         name = this.name,
         url = YOUTUBE_URL + this.key
     )

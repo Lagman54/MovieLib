@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.finalproject.domain.repository.MovieRepository
 import com.example.finalproject.domain.model.Movie
 import com.example.finalproject.domain.model.MovieDetails
+import com.example.finalproject.domain.model.Trailer
 import com.example.finalproject.domain.model.Video
 import com.example.finalproject.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,12 +25,11 @@ class HomeViewModel @Inject constructor(
     val trendingMovie: LiveData<MovieDetails>
         get() = _trendingMovie
 
-    private val _trendingMovieTrailer = MutableLiveData<Video>()
-    private val trendingMovieTrailer: LiveData<Video>
+    private val _trendingMovieTrailer = MutableLiveData<Trailer>()
+    val trendingMovieTrailer: LiveData<Trailer>
         get() = _trendingMovieTrailer
 
     fun getRecommendations() {
-
         launch(
             doubleRequest = {
                 val movies = repository.getPopularMovies()
@@ -45,6 +45,18 @@ class HomeViewModel @Inject constructor(
     }
 
     fun getTrendingMovieTrailer(id: Int) {
+        launch(
+            request = {
+                repository.getTrailers(id)
+            },
+            onSuccess = {
+                // TODO handle the case when there are no trailers available
+                if (it.isEmpty()) {
+                    return@launch
+                }
+                _trendingMovieTrailer.value = it[0]
+            }
+        )
     }
 
 }
