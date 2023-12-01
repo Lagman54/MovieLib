@@ -3,7 +3,7 @@ package com.example.finalproject.data.data_source
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.finalproject.common.Const.Api.MOVIE_STARTING_PAGE_INDEX
-import com.example.finalproject.data.MovieApi
+import com.example.finalproject.data.api.MovieApi
 import com.example.finalproject.data.model.MovieEntity
 import retrofit2.HttpException
 import java.io.IOException

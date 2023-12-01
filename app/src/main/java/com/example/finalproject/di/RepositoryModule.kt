@@ -1,6 +1,6 @@
 package com.example.finalproject.di
 
-import com.example.finalproject.data.MovieApi
+import com.example.finalproject.data.api.MovieApi
 import com.example.finalproject.data.repository.MovieRepositoryImpl
 import com.example.finalproject.domain.repository.MovieRepository
 import dagger.Module

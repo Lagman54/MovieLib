@@ -5,7 +5,6 @@ import com.example.finalproject.R
 import com.example.finalproject.databinding.ItemDetailsBodyBinding
 import com.example.finalproject.databinding.ItemDetailsHeaderBinding
 import com.example.finalproject.databinding.ItemDetailsViewpagerBinding
-import com.example.finalproject.presentation.screen.my_lists.adapter.UserListsViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
 class HeaderViewHolder(private val binding: ItemDetailsHeaderBinding) :
@@ -18,7 +17,7 @@ class HeaderViewHolder(private val binding: ItemDetailsHeaderBinding) :
 class BodyViewHolder(private val binding: ItemDetailsBodyBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(item: ListItem.Body) = with(binding) {
-        ratingbar.rating = item.rating.toFloat()
+        ratingbar.rating = item.rating
         ratingAverage.text = root.resources.getString(R.string.rating, item.rating)
         description.text = item.description
     }
@@ -28,7 +27,7 @@ class ViewPagerViewHolder(private val binding: ItemDetailsViewpagerBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(item: ListItem.ViewPager) = with(binding) {
         viewPager.offscreenPageLimit = 2
-        viewPager.adapter = UserListsViewPagerAdapter(item.fragmentManager, item.lifecycle)
+        viewPager.adapter = MovieDetailsViewPagerAdapter(item.fragmentManager, item.lifecycle)
 
         TabLayoutMediator(tabLayoutBinding.topTab, viewPager) { tab, position ->
             when(position) {

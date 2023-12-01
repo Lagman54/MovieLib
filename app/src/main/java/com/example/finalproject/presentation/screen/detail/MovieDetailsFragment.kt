@@ -37,30 +37,28 @@ class MovieDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        setUpView()
+        binding.toolbar.onDrawableStartClick = { findNavController().popBackStack() }
+        setUpAdapter()
+        setUpViewModel()
     }
 
-    private fun setUpView() = with(binding) {
-        binding.toolbar.onDrawableStartClick = {
-            findNavController().popBackStack()
-        }
-
+    private fun setUpAdapter() = with(binding) {
         adapter = MovieDetailsAdapter()
-
         list.adapter = adapter
+    }
 
+    private fun setUpViewModel() {
         viewModel.movieDetails.observe(viewLifecycleOwner) {
-            imageLoader.load(posterImage, it.posterUrl)
-            adapter.update(transformData(it))
+            imageLoader.load(binding.posterImage, it.posterUrl)
+            adapter.submitList(transformData(it))
         }
-        viewModel.getMovieDetails(requireArguments().getInt(MOVIE_ID))
+        viewModel.id = requireArguments().getInt(MOVIE_ID)
     }
 
     private fun transformData(movie: MovieDetails) = listOf(
         ListItem.Header(movie.title),
         ListItem.Body(movie.rating, movie.description),
-        ListItem.ViewPager(childFragmentManager, lifecycle)
+        ListItem.ViewPager(movie.id, childFragmentManager, lifecycle)
     )
 
     companion object {

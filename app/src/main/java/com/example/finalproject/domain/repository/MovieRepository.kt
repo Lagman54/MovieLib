@@ -17,5 +17,7 @@ interface MovieRepository {
 
     suspend fun getTrailers(id: Int): List<Trailer>
 
+    suspend fun getSimilarMovies(id: Int): List<Movie>
+
     fun getMovies(): Flow<PagingData<Movie>>
 }

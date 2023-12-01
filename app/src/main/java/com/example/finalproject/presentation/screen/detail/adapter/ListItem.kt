@@ -23,6 +23,7 @@ sealed class ListItem {
     }
 
     data class ViewPager(
+        val id: Int,
         val fragmentManager: FragmentManager,
         val lifecycle: Lifecycle
     ) : ListItem() {

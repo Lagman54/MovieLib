@@ -7,13 +7,5 @@
     <fragment
         android:id="@+id/browseFragment"
         android:name="com.example.finalproject.presentation.screen.browse.BrowseFragment"
-        android:label="BrowseFragment" >
-        <action
-            android:id="@+id/action_browseFragment_to_movieDetailsFragment3"
-            app:destination="@id/movieDetailsFragment3" />
-    </fragment>
-    <fragment
-        android:id="@+id/movieDetailsFragment3"
-        android:name="com.example.finalproject.presentation.screen.detail.MovieDetailsFragment"
-        android:label="MovieDetailsFragment" />
+        android:label="BrowseFragment" />
 </navigation>

@@ -39,7 +39,7 @@ class PersonalListFragment : Fragment() {
         adapter = HorizontalMovieAdapter()
         adapter.onClick = OnMovieClickListener { movieId ->
             findNavController().navigate(
-                R.id.action_personalListFragment_to_movieDetailsFragment2,
+                R.id.action_global_movieDetailsFragment4,
                 MovieDetailsFragment.createBundle(id = movieId)
             )
         }

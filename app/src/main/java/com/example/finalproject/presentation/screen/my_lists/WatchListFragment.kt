@@ -34,7 +34,7 @@ class WatchListFragment : Fragment() {
 
         adapter.onClick = OnMovieClickListener { movieId ->
             findNavController().navigate(
-                R.id.action_myListsFragment_to_movieDetailsFragment2,
+                R.id.action_global_movieDetailsFragment4,
                 MovieDetailsFragment.createBundle(id = movieId)
             )
         }

@@ -1,7 +1,6 @@
-package com.example.finalproject.data
+package com.example.finalproject.data.api
 
 import com.example.finalproject.data.model.MovieDetailsEntity
-import com.example.finalproject.data.model.MovieEntity
 import com.example.finalproject.data.model.MovieResponse
 import com.example.finalproject.data.model.VideoResponse
 import retrofit2.http.GET
@@ -21,5 +20,10 @@ interface MovieApi {
     @GET("/3/movie/{movie_id}/videos")
     suspend fun getMovieVideos(@Path("movie_id") id: Int): VideoResponse
 
+    @GET("/3/movie/{movie_id}/similar")
+    suspend fun getSimilarMovies(
+        @Path("movie_id") id: Int,
+        @Query("page") page: Int
+    ): MovieResponse
 
 }

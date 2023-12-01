@@ -10,5 +10,9 @@
     <include app:graph="@navigation/home_screen" />
     <include app:graph="@navigation/browse_screen" />
     <include app:graph="@navigation/my_lists_screen" />
+    <fragment
+        android:id="@+id/movieDetailsFragment4"
+        android:name="com.example.finalproject.presentation.screen.detail.MovieDetailsFragment"
+        android:label="MovieDetailsFragment" /><action android:id="@+id/action_global_movieDetailsFragment4" app:destination="@id/movieDetailsFragment4"/>
 
 </navigation>

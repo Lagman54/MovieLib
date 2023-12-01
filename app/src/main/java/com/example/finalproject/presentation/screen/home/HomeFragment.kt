@@ -50,7 +50,7 @@ class HomeFragment : Fragment() {
         recommendationsAdapter = VerticalMovieAdapter(imageLoader)
         recommendationsAdapter.onClick = OnMovieClickListener { movieId ->
             findNavController().navigate(
-                R.id.action_homeFragment_to_movieDetailsFragment,
+                R.id.action_global_movieDetailsFragment4,
                 MovieDetailsFragment.createBundle(id = movieId)
             )
         }
@@ -76,7 +76,7 @@ class HomeFragment : Fragment() {
 
             trendingMoviePoster.setOnClickListener {
                 findNavController().navigate(
-                    R.id.action_homeFragment_to_movieDetailsFragment,
+                    R.id.action_global_movieDetailsFragment4,
                     MovieDetailsFragment.createBundle(id = movieDetails.id)
                 )
             }

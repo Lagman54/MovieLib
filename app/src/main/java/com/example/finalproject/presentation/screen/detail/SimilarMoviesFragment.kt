@@ -1,4 +1,4 @@
-package com.example.finalproject.presentation.screen.browse
+package com.example.finalproject.presentation.screen.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,28 +6,26 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.finalproject.R
 import com.example.finalproject.databinding.FragmentGridMoviesBinding
+import com.example.finalproject.domain.model.Movie
 import com.example.finalproject.presentation.adapter_common.OnMovieClickListener
+import com.example.finalproject.presentation.adapter_common.VerticalMovieAdapter
 import com.example.finalproject.presentation.decoration.OffsetDecoration
 import com.example.finalproject.presentation.image_loader.ImageLoader
-import com.example.finalproject.presentation.screen.browse.adapter.MoviePagingAdapter
-import com.example.finalproject.presentation.screen.detail.MovieDetailsFragment
+import com.example.finalproject.presentation.screen.detail.adapter.MovieLargeAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class PopularFragment : Fragment() {
+class SimilarMoviesFragment : Fragment() {
 
     private lateinit var binding: FragmentGridMoviesBinding
-    private lateinit var pagingAdapter: MoviePagingAdapter
-    private val viewModel: BrowseViewModel by viewModels()
+    private lateinit var adapter: MovieLargeAdapter
+    private val viewModel: MovieDetailsViewModel by viewModels(
+        ownerProducer = { requireParentFragment() }
+    )
 
     @Inject
     lateinit var imageLoader: ImageLoader
@@ -43,32 +41,27 @@ class PopularFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        setUpPagingAdapter()
+        setUpAdapter()
         setUpViewModel()
     }
 
-    private fun setUpPagingAdapter() = with(binding) {
-        pagingAdapter = MoviePagingAdapter(imageLoader)
-        pagingAdapter.onClick = OnMovieClickListener { id ->
+    private fun setUpAdapter() = with(binding) {
+        adapter = MovieLargeAdapter(imageLoader)
+        adapter.onClick = OnMovieClickListener {
             findNavController().navigate(
                 R.id.action_global_movieDetailsFragment4,
-                MovieDetailsFragment.createBundle(id = id)
+                MovieDetailsFragment.createBundle(it)
             )
         }
 
         list.addItemDecoration(OffsetDecoration(end = 8, bottom = 16))
-        list.adapter = pagingAdapter
+
+        list.adapter = adapter
     }
 
     private fun setUpViewModel() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.movies.collectLatest { pagingData ->
-                    pagingAdapter.submitData(pagingData)
-                }
-            }
+        viewModel.similarMovies.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
         }
     }
-
 }

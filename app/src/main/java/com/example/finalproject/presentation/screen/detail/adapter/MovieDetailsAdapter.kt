@@ -2,6 +2,8 @@ package com.example.finalproject.presentation.screen.detail.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalproject.databinding.ItemDetailsBodyBinding
 import com.example.finalproject.databinding.ItemDetailsHeaderBinding
@@ -10,13 +12,9 @@ import com.example.finalproject.presentation.screen.detail.adapter.ListItem.Comp
 import com.example.finalproject.presentation.screen.detail.adapter.ListItem.Companion.HEADER
 import com.example.finalproject.presentation.screen.detail.adapter.ListItem.Companion.VIEWPAGER
 
-class MovieDetailsAdapter(
-    private val itemList: MutableList<ListItem> = mutableListOf()
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MovieDetailsAdapter : ListAdapter<ListItem, RecyclerView.ViewHolder>(DetailsDiffUtils) {
 
-    override fun getItemViewType(position: Int) = itemList[position].itemType
-
-    override fun getItemCount() = itemList.size
+    override fun getItemViewType(position: Int) = currentList[position].itemType
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -38,16 +36,21 @@ class MovieDetailsAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(getItemViewType(position)) {
-            HEADER -> (holder as HeaderViewHolder).bind(itemList[position] as ListItem.Header)
-            BODY -> (holder as BodyViewHolder).bind(itemList[position] as ListItem.Body)
-            VIEWPAGER -> (holder as ViewPagerViewHolder).bind(itemList[position] as ListItem.ViewPager)
+            HEADER -> (holder as HeaderViewHolder).bind(currentList[position] as ListItem.Header)
+            BODY -> (holder as BodyViewHolder).bind(currentList[position] as ListItem.Body)
+            VIEWPAGER -> (holder as ViewPagerViewHolder).bind(currentList[position] as ListItem.ViewPager)
         }
     }
 
-    fun update(list: List<ListItem>) {
-        itemList.clear()
-        itemList.addAll(list)
-        notifyItemRangeInserted(0, list.size)
+    object DetailsDiffUtils : DiffUtil.ItemCallback<ListItem>() {
+        override fun areItemsTheSame(oldItem: ListItem, newItem: ListItem): Boolean {
+            return oldItem.itemType == newItem.itemType
+        }
+
+        override fun areContentsTheSame(oldItem: ListItem, newItem: ListItem): Boolean {
+            return oldItem.itemType == newItem.itemType
+        }
+
     }
 
 }
