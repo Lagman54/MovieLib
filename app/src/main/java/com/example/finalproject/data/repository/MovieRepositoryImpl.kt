@@ -5,6 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
 import com.example.finalproject.common.Const.Api.MOVIES_PAGE_SIZE
+import com.example.finalproject.common.Const.Api.TRAILER
 import com.example.finalproject.data.api.MovieApi
 import com.example.finalproject.data.data_source.MoviePagingSource
 import com.example.finalproject.data.mapper.mapToDomain
@@ -41,7 +42,8 @@ class MovieRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getTrailers(id: Int): List<Trailer> {
-        return api.getMovieVideos(id).videos.map(VideoEntity::mapToTrailer)
+        return api.getMovieVideos(id).videos.filter { it.type == TRAILER }
+            .map(VideoEntity::mapToTrailer)
     }
 
     override fun getMovies(): Flow<PagingData<Movie>> {

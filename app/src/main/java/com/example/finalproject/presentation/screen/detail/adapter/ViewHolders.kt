@@ -28,7 +28,7 @@ class ViewPagerViewHolder(private val binding: ItemDetailsViewpagerBinding) :
     fun bind(item: ListItem.ViewPager) = with(binding) {
         viewPager.offscreenPageLimit = 2
         viewPager.adapter = MovieDetailsViewPagerAdapter(item.fragmentManager, item.lifecycle)
-
+        viewPager.isUserInputEnabled = false
         TabLayoutMediator(tabLayoutBinding.topTab, viewPager) { tab, position ->
             when(position) {
                 0 -> tab.text = "TRAILERS"

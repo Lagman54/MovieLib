@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="85dp"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="66dp"
+        android:layout_gravity="center_vertical"
+        android:background="@color/red"
+        android:scaleX="0.5"
+        android:scaleY="0.5"
+        android:src="@drawable/baseline_play_arrow_24"
+        app:tint="@color/white" />
 
     <TextView
-        tools:text="trailer title"
         android:id="@+id/title"
-        android:textSize="14sp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:textSize="14sp"
+        tools:text="trailer title" />
 
 </LinearLayout>

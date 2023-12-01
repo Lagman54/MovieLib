@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.finalproject.presentation.screen.detail.MovieTrailerFragment
 import com.example.finalproject.presentation.screen.detail.SimilarMoviesFragment
 import com.example.finalproject.presentation.screen.my_lists.PersonalListFragment
 
@@ -15,7 +16,7 @@ class MovieDetailsViewPagerAdapter(
 
     override fun createFragment(position: Int): Fragment {
         return when(position) {
-            0 -> PersonalListFragment()
+            0 -> MovieTrailerFragment()
             else -> SimilarMoviesFragment()
         }
     }

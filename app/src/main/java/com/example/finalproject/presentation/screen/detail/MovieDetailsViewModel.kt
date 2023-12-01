@@ -9,6 +9,7 @@ import com.example.finalproject.domain.repository.MovieRepository
 import com.example.finalproject.data.mapper.mapToDomain
 import com.example.finalproject.domain.model.Movie
 import com.example.finalproject.domain.model.MovieDetails
+import com.example.finalproject.domain.model.Trailer
 import com.example.finalproject.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -23,6 +24,7 @@ class MovieDetailsViewModel @Inject constructor(private val repository: MovieRep
     var id: Int = 0
         set(value) {
             getMovieDetails(value)
+            getTrailers(value)
             getSimilarMovies(value)
             field = value
         }
@@ -30,6 +32,10 @@ class MovieDetailsViewModel @Inject constructor(private val repository: MovieRep
     private val _movieDetails = MutableLiveData<MovieDetails>()
     val movieDetails: LiveData<MovieDetails>
         get() = _movieDetails
+
+    private val _trailers = MutableLiveData<List<Trailer>>()
+    val trailers: LiveData<List<Trailer>>
+        get() = _trailers
 
     private val _similarMovies = MutableLiveData<List<Movie>>()
     val similarMovies: LiveData<List<Movie>>
@@ -42,6 +48,17 @@ class MovieDetailsViewModel @Inject constructor(private val repository: MovieRep
             },
             onSuccess = {
                 _movieDetails.value = it
+            }
+        )
+    }
+
+    private fun getTrailers(id: Int) {
+        launch(
+            request = {
+                repository.getTrailers(id)
+            },
+            onSuccess = {
+                _trailers.value = it
             }
         )
     }

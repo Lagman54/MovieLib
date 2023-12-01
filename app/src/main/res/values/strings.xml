@@ -16,4 +16,5 @@
     <string name="browse">Browse</string>
     <string name="popular">Popular</string>
     <string name="movie_genres">movie genres</string>
+    <string name="no_trailers_available">No trailers available!</string>
 </resources>

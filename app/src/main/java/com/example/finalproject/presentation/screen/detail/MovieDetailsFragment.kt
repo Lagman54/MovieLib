@@ -16,6 +16,8 @@ import com.example.finalproject.presentation.screen.detail.adapter.MovieDetailsA
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+
+// FIXME make viewPager height dynamic
 @AndroidEntryPoint
 class MovieDetailsFragment : Fragment() {
 

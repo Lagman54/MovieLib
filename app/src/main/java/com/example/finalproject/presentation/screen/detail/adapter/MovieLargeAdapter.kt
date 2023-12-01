@@ -43,7 +43,7 @@ class MovieLargeAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position)!!, onClick, imageLoader)
+        holder.bind(currentList[position], onClick, imageLoader)
     }
 
     object MovieComparator : DiffUtil.ItemCallback<Movie>() {

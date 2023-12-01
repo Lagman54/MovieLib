@@ -7,6 +7,7 @@ object Const {
         const val IMAGE_URL = "https://image.tmdb.org/t/p/original/"
         const val MOVIE_STARTING_PAGE_INDEX = 1
         const val MOVIES_PAGE_SIZE = 20
+        const val TRAILER = "Trailer"
 
         val genres = mapOf<Int, String>(
             28 to "Action",
