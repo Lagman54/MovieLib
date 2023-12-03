@@ -10,7 +10,7 @@ import retrofit2.http.Query
 interface MovieApi {
 
     @GET(
-        "/3/discover/movie" + "?include_adult=false" + "&language=en-US" + "&sort_by=popularity.desc"
+        "/3/discover/movie" + "?include_adult=false" + "&sort_by=popularity.desc"
     )
     suspend fun getMovies(@Query("page") page: Int): MovieResponse
 
@@ -26,9 +26,14 @@ interface MovieApi {
         @Query("page") page: Int
     ): MovieResponse
 
-    @GET("/3/search/movie")
+    @GET("/3/search/movie" + "?include_adult=false")
     suspend fun getMoviesByTitle(
         @Query("query") title: String,
+        @Query("page") page: Int
+    ): MovieResponse
+
+    @GET("/3/movie/now_playing")
+    suspend fun getNowPlayingMovies(
         @Query("page") page: Int
     ): MovieResponse
 

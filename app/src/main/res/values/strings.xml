@@ -18,4 +18,5 @@
     <string name="movie_genres">movie genres</string>
     <string name="no_trailers_available">No trailers available!</string>
     <string name="search">Search</string>
+    <string name="movies_in_theatres">MOVIES IN THEATRES</string>
 </resources>

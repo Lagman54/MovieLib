@@ -73,4 +73,8 @@ class MovieRepositoryImpl @Inject constructor(
             }
     }
 
+    override suspend fun getNowPlayingMovies(): List<Movie> {
+        return api.getNowPlayingMovies(1).movies.map(MovieEntity::mapToDomain)
+    }
+
 }

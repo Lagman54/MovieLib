@@ -6,14 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.net.toUri
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.finalproject.R
 import com.example.finalproject.presentation.adapter_common.VerticalMovieAdapter
 import com.example.finalproject.databinding.FragmentHomeScreenBinding
-import com.example.finalproject.domain.model.MovieDetails
-import com.example.finalproject.presentation.adapter_common.OnMovieClickListener
+import com.example.finalproject.presentation.base.BaseFragment
 import com.example.finalproject.presentation.decoration.OffsetDecoration
 import com.example.finalproject.presentation.screen.detail.MovieDetailsFragment
 import com.example.finalproject.presentation.image_loader.ImageLoader
@@ -21,10 +19,12 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment() {
 
     private lateinit var binding: FragmentHomeScreenBinding
-    private lateinit var recommendationsAdapter: VerticalMovieAdapter
+    private lateinit var playingMoviesAdapter: VerticalMovieAdapter
+    private lateinit var popularAdapter: VerticalMovieAdapter
+    private lateinit var watchListAdapter: VerticalMovieAdapter
     private val viewModel: HomeViewModel by viewModels()
 
     @Inject
@@ -47,26 +47,30 @@ class HomeFragment : Fragment() {
     }
 
     private fun setUpAdapters() = with(binding) {
-        recommendationsAdapter = VerticalMovieAdapter(imageLoader)
-        recommendationsAdapter.onClick = OnMovieClickListener { movieId ->
-            findNavController().navigate(
-                R.id.action_global_movieDetailsFragment4,
-                MovieDetailsFragment.createBundle(id = movieId)
-            )
-        }
+        playingMoviesAdapter = VerticalMovieAdapter(imageLoader)
+        popularAdapter = VerticalMovieAdapter(imageLoader)
+        watchListAdapter = VerticalMovieAdapter(imageLoader)
+
+        playingMoviesAdapter.onClick = onMovieClickListener()
+        popularAdapter.onClick = onMovieClickListener()
+        watchListAdapter.onClick = onMovieClickListener()
 
         recommendationsList.addItemDecoration(OffsetDecoration(start = 8))
         popularList.addItemDecoration(OffsetDecoration(start = 8))
         watchList.addItemDecoration(OffsetDecoration(start = 8))
 
-        recommendationsList.adapter = recommendationsAdapter
-        popularList.adapter = recommendationsAdapter
-        watchList.adapter = recommendationsAdapter
+        recommendationsList.adapter = playingMoviesAdapter
+        popularList.adapter = popularAdapter
+        watchList.adapter = watchListAdapter
     }
 
     private fun setUpViewModel() = with(binding) {
-        viewModel.userRecommendations.observe(viewLifecycleOwner) {
-            recommendationsAdapter.submitList(it)
+        viewModel.popularMovies.observe(viewLifecycleOwner) {
+            popularAdapter.submitList(it)
+        }
+
+        viewModel.nowPlayingMovies.observe(viewLifecycleOwner) {
+            playingMoviesAdapter.submitList(it)
         }
 
         viewModel.trendingMovie.observe(viewLifecycleOwner) { movieDetails ->
@@ -91,8 +95,7 @@ class HomeFragment : Fragment() {
         }
 
         viewModel.getRecommendations()
+        viewModel.getNowPlayingMovies()
     }
-
-
 
 }

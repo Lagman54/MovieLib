@@ -1,26 +1,21 @@
 package com.example.finalproject.presentation.screen.search
 
 import android.app.Activity
-import android.inputmethodservice.InputMethodService
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.widget.addTextChangedListener
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.example.finalproject.R
 import com.example.finalproject.databinding.FragmentSearchScreenBinding
-import com.example.finalproject.presentation.adapter_common.OnMovieClickListener
+import com.example.finalproject.presentation.base.BaseFragment
 import com.example.finalproject.presentation.decoration.OffsetDecoration
 import com.example.finalproject.presentation.image_loader.ImageLoader
-import com.example.finalproject.presentation.screen.detail.MovieDetailsFragment
 import com.example.finalproject.presentation.screen.search.adapter.HorizontalMoviePagingAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -29,7 +24,7 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class SearchFragment : Fragment() {
+class SearchFragment : BaseFragment() {
 
     private lateinit var binding: FragmentSearchScreenBinding
     private lateinit var pagingAdapter: HorizontalMoviePagingAdapter
@@ -43,7 +38,7 @@ class SearchFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentSearchScreenBinding.inflate(inflater, container, false);
+        binding = FragmentSearchScreenBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -66,12 +61,7 @@ class SearchFragment : Fragment() {
 
     private fun setUpAdapter() = with(binding) {
         pagingAdapter = HorizontalMoviePagingAdapter(imageLoader)
-        pagingAdapter.onClick = OnMovieClickListener { id ->
-            findNavController().navigate(
-                R.id.action_global_movieDetailsFragment4,
-                MovieDetailsFragment.createBundle(id = id)
-            )
-        }
+        pagingAdapter.onClick = onMovieClickListener()
 
         list.addItemDecoration(OffsetDecoration(start = 16, end = 16, top = 16))
         list.adapter = pagingAdapter
