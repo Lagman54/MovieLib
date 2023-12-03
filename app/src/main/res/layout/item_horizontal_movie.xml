@@ -8,7 +8,7 @@
 
     <ImageView
         android:id="@+id/posterImage"
-        android:layout_width="wrap_content"
+        android:layout_width="102dp"
         android:layout_height="150dp"
         android:adjustViewBounds="true"
         android:src="@drawable/poster" />
@@ -47,12 +47,13 @@
             android:layout_marginTop="16dp"
             android:textColor="@color/gray"
             android:textSize="12sp"
-            tools:text="Average: 7.9 / 10" />
+            android:text="@string/rating"/>
 
     </LinearLayout>
 
 
     <ImageView
+        android:id="@+id/favoriteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -61,6 +62,7 @@
         app:tint="@color/white" />
 
     <ImageView
+        android:id="@+id/moreButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"

@@ -9,7 +9,7 @@ object Const {
         const val MOVIES_PAGE_SIZE = 20
         const val TRAILER = "Trailer"
 
-        val genres = mapOf<Int, String>(
+        val genres = mapOf(
             28 to "Action",
             12 to "Adventure",
             16 to "Animation",

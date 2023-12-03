@@ -15,7 +15,7 @@ import com.example.finalproject.databinding.FragmentGridMoviesBinding
 import com.example.finalproject.presentation.adapter_common.OnMovieClickListener
 import com.example.finalproject.presentation.decoration.OffsetDecoration
 import com.example.finalproject.presentation.image_loader.ImageLoader
-import com.example.finalproject.presentation.screen.browse.adapter.MoviePagingAdapter
+import com.example.finalproject.presentation.screen.browse.adapter.VerticalMoviePagingAdapter
 import com.example.finalproject.presentation.screen.detail.MovieDetailsFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -26,7 +26,7 @@ import javax.inject.Inject
 class PopularFragment : Fragment() {
 
     private lateinit var binding: FragmentGridMoviesBinding
-    private lateinit var pagingAdapter: MoviePagingAdapter
+    private lateinit var pagingAdapter: VerticalMoviePagingAdapter
     private val viewModel: BrowseViewModel by viewModels()
 
     @Inject
@@ -49,7 +49,7 @@ class PopularFragment : Fragment() {
     }
 
     private fun setUpPagingAdapter() = with(binding) {
-        pagingAdapter = MoviePagingAdapter(imageLoader)
+        pagingAdapter = VerticalMoviePagingAdapter(imageLoader)
         pagingAdapter.onClick = OnMovieClickListener { id ->
             findNavController().navigate(
                 R.id.action_global_movieDetailsFragment4,

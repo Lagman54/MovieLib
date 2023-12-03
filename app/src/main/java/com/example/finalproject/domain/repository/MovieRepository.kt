@@ -20,4 +20,6 @@ interface MovieRepository {
     suspend fun getSimilarMovies(id: Int): List<Movie>
 
     fun getMovies(): Flow<PagingData<Movie>>
+
+    fun getMoviesByTitle(title: String): Flow<PagingData<Movie>>
 }

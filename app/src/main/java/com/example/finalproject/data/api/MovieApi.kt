@@ -26,4 +26,10 @@ interface MovieApi {
         @Query("page") page: Int
     ): MovieResponse
 
+    @GET("/3/search/movie")
+    suspend fun getMoviesByTitle(
+        @Query("query") title: String,
+        @Query("page") page: Int
+    ): MovieResponse
+
 }

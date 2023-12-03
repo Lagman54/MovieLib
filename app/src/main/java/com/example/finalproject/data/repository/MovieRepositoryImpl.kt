@@ -8,6 +8,7 @@ import com.example.finalproject.common.Const.Api.MOVIES_PAGE_SIZE
 import com.example.finalproject.common.Const.Api.TRAILER
 import com.example.finalproject.data.api.MovieApi
 import com.example.finalproject.data.data_source.MoviePagingSource
+import com.example.finalproject.data.data_source.SearchMoviePagingSource
 import com.example.finalproject.data.mapper.mapToDomain
 import com.example.finalproject.data.mapper.mapToTrailer
 import com.example.finalproject.data.model.MovieEntity
@@ -53,6 +54,19 @@ class MovieRepositoryImpl @Inject constructor(
                 maxSize = 200
             ),
             pagingSourceFactory = { MoviePagingSource(api) }
+        ).flow
+            .map { pagingData ->
+                pagingData.map(MovieEntity::mapToDomain)
+            }
+    }
+
+    override fun getMoviesByTitle(title: String): Flow<PagingData<Movie>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = MOVIES_PAGE_SIZE,
+                maxSize = 200
+            ),
+            pagingSourceFactory = { SearchMoviePagingSource(api, title) }
         ).flow
             .map { pagingData ->
                 pagingData.map(MovieEntity::mapToDomain)

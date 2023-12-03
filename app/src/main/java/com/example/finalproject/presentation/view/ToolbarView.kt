@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.navigation.findNavController
 import com.example.finalproject.R
 import com.example.finalproject.databinding.ViewToolbarBinding
 import com.example.finalproject.common.setAttrs
@@ -53,7 +54,7 @@ class ToolbarView @JvmOverloads constructor(
             }
 
             binding.drawableEnd.setOnClickListener {
-                onDrawableEndClick?.invoke()
+                onDrawableEndClick.invoke()
             }
         }
     }
@@ -66,6 +67,8 @@ class ToolbarView @JvmOverloads constructor(
 
     var onDrawableStartClick: (() -> Unit)? = null
 
-    var onDrawableEndClick: (() -> Unit)? = null
+    var onDrawableEndClick: (() -> Unit) = {
+        findNavController().navigate(R.id.action_global_searchFragment)
+    }
 }
 

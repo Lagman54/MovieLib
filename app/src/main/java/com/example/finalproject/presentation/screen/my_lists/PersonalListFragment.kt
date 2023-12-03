@@ -14,11 +14,18 @@ import com.example.finalproject.presentation.adapter_common.OnMovieClickListener
 import com.example.finalproject.presentation.decoration.OffsetDecoration
 import com.example.finalproject.presentation.screen.detail.MovieDetailsFragment
 import com.example.finalproject.domain.model.Movie
+import com.example.finalproject.presentation.image_loader.ImageLoader
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class PersonalListFragment : Fragment() {
 
     private lateinit var binding: FragmentPersonalListBinding
     private lateinit var adapter: HorizontalMovieAdapter
+
+    @Inject
+    lateinit var imageLoader: ImageLoader
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,7 +43,7 @@ class PersonalListFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-        adapter = HorizontalMovieAdapter()
+        adapter = HorizontalMovieAdapter(imageLoader)
         adapter.onClick = OnMovieClickListener { movieId ->
             findNavController().navigate(
                 R.id.action_global_movieDetailsFragment4,

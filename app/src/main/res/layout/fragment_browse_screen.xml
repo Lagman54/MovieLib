@@ -9,7 +9,6 @@
     <com.example.finalproject.presentation.view.ToolbarView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:drawable_end_visibility="false"
         app:drawable_start_visibility="false"
         app:toolbar_title="@string/browse" />
 

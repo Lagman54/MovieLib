@@ -1,33 +1,36 @@
-package com.example.finalproject.presentation.screen.browse.adapter
+package com.example.finalproject.presentation.screen.search.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.finalproject.databinding.ItemMovieLargeBinding
+import com.example.finalproject.databinding.ItemHorizontalMovieBinding
 import com.example.finalproject.domain.model.Movie
 import com.example.finalproject.presentation.adapter_common.OnMovieClickListener
-import com.example.finalproject.presentation.image_loader.GlideImageLoader
 import com.example.finalproject.presentation.image_loader.ImageLoader
 
-class MoviePagingAdapter(
+class HorizontalMoviePagingAdapter(
     private val imageLoader: ImageLoader
-) : PagingDataAdapter<Movie, MoviePagingAdapter.ViewHolder>(MovieComparator) {
+) : PagingDataAdapter<Movie, HorizontalMoviePagingAdapter.ViewHolder>(MovieComparator) {
 
     var onClick: OnMovieClickListener? = null
 
-    class ViewHolder(private val binding: ItemMovieLargeBinding) :
+    class ViewHolder(private val binding: ItemHorizontalMovieBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
             listItem: Movie,
             onClick: OnMovieClickListener?,
             imageLoader: ImageLoader
         ) = with(binding) {
-            title.text = listItem.title
-            genre.text = listItem.genre
             imageLoader.load(posterImage, listItem.posterUrl)
+            title.text = listItem.title
+            genres.text = listItem.genre
+            rating.text = "Average: ${listItem.rating}"
 
+            favoriteButton.setOnClickListener {
+
+            }
             moreButton.setOnClickListener {
 
             }
@@ -39,7 +42,7 @@ class MoviePagingAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = ItemMovieLargeBinding.inflate(inflater, parent, false)
+        val binding = ItemHorizontalMovieBinding.inflate(inflater, parent, false)
         return ViewHolder(binding)
     }
 

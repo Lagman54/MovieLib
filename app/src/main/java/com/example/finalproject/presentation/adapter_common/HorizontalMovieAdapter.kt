@@ -7,20 +7,24 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalproject.databinding.ItemHorizontalMovieBinding
 import com.example.finalproject.domain.model.Movie
+import com.example.finalproject.presentation.image_loader.ImageLoader
 
-class HorizontalMovieAdapter :
+class HorizontalMovieAdapter(
+    private val imageLoader: ImageLoader
+) :
     ListAdapter<Movie, HorizontalMovieAdapter.ViewHolder>(DiffUtilCallback) {
 
     var onClick: OnMovieClickListener? = null
 
     class ViewHolder(
         private val binding: ItemHorizontalMovieBinding,
-        private val onClick: OnMovieClickListener?
+        private val onClick: OnMovieClickListener?,
+        private val imageLoader: ImageLoader
     ) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(listItem: Movie) = with(binding) {
+            imageLoader.load(posterImage, listItem.posterUrl)
             title.text = listItem.title
-            posterImage.setImageResource(listItem.posterRes)
             genres.text = listItem.genre
             rating.text = listItem.rating.toString()
 
@@ -30,8 +34,6 @@ class HorizontalMovieAdapter :
         }
     }
 
-    override fun getItemCount(): Int = currentList.size
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             ItemHorizontalMovieBinding.inflate(
@@ -39,7 +41,8 @@ class HorizontalMovieAdapter :
                 parent,
                 false
             ),
-            onClick
+            onClick,
+            imageLoader
         )
     }
 

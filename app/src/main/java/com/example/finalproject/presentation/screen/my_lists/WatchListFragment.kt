@@ -13,11 +13,18 @@ import com.example.finalproject.presentation.adapter_common.OnMovieClickListener
 import com.example.finalproject.presentation.decoration.OffsetDecoration
 import com.example.finalproject.presentation.screen.detail.MovieDetailsFragment
 import com.example.finalproject.domain.model.Movie
+import com.example.finalproject.presentation.image_loader.ImageLoader
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class WatchListFragment : Fragment() {
 
     private lateinit var binding: FragmentWatchListBinding
     private lateinit var adapter: HorizontalMovieAdapter
+
+    @Inject
+    lateinit var imageLoader: ImageLoader
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,7 +37,7 @@ class WatchListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = HorizontalMovieAdapter()
+        adapter = HorizontalMovieAdapter(imageLoader)
 
         adapter.onClick = OnMovieClickListener { movieId ->
             findNavController().navigate(
