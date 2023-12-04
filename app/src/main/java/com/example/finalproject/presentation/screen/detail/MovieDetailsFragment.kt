@@ -59,7 +59,9 @@ class MovieDetailsFragment : Fragment() {
 
     private fun transformData(movie: MovieDetails) = listOf(
         ListItem.Header(movie.title),
-        ListItem.Body(movie.rating, movie.description),
+        ListItem.Body(movie.rating, movie.description) {
+            viewModel.addToWatchList()
+        },
         ListItem.ViewPager(movie.id, childFragmentManager, lifecycle)
     )
 

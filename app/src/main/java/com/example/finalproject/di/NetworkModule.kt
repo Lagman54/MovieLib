@@ -2,7 +2,7 @@ package com.example.finalproject.di
 
 import com.example.finalproject.BuildConfig
 import com.example.finalproject.common.Const.Api.BASE_URL
-import com.example.finalproject.data.api.MovieApi
+import com.example.finalproject.data.network.api.MovieApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

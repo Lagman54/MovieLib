@@ -26,7 +26,8 @@ class HorizontalMovieAdapter(
             imageLoader.load(posterImage, listItem.posterUrl)
             title.text = listItem.title
             genres.text = listItem.genre
-            rating.text = listItem.rating.toString()
+            if(listItem.rating != null)
+                rating.text = listItem.rating.toString()
 
             root.setOnClickListener {
                 onClick?.click(listItem.id)

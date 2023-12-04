@@ -47,7 +47,7 @@
             android:layout_marginTop="16dp"
             android:textColor="@color/gray"
             android:textSize="12sp"
-            android:text="@string/rating"/>
+            tools:text="@string/rating"/>
 
     </LinearLayout>
 

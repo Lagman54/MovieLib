@@ -74,4 +74,21 @@ class MovieDetailsViewModel @Inject constructor(private val repository: MovieRep
         )
     }
 
+    fun addToWatchList() {
+        try {
+            repository.addToWatchList(_movieDetails.value!!.mapToMovie())
+        } catch (e: Exception) {
+            Log.e(">>>", e.toString())
+        }
+    }
+
+    private fun MovieDetails.mapToMovie(): Movie {
+        return Movie(
+            id = this.id,
+            title = this.title,
+            posterUrl = this.posterUrl,
+            rating = this.rating,
+            genre = this.genres.reduce { acc, s -> "$acc, $s" }
+        )
+    }
 }

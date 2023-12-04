@@ -1,7 +1,5 @@
 package com.example.finalproject.domain.model
 
-import com.example.finalproject.data.model.GenreEntity
-
 
 data class MovieDetails(
     val id: Int,
@@ -10,6 +8,6 @@ data class MovieDetails(
     val posterUrl: String,
     val releaseDate: String,
     val voteCount: Int,
-    val genres: List<Genre>,
+    val genres: List<String>,
     val rating: Float,
 )

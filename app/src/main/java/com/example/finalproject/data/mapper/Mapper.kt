@@ -3,11 +3,11 @@ package com.example.finalproject.data.mapper
 import com.example.finalproject.common.Const.Api.IMAGE_URL
 import com.example.finalproject.common.Const.Api.YOUTUBE_URL
 import com.example.finalproject.common.Const.Api.genres
-import com.example.finalproject.data.model.GenreEntity
-import com.example.finalproject.data.model.MovieDetailsEntity
-import com.example.finalproject.data.model.MovieEntity
-import com.example.finalproject.data.model.VideoEntity
-import com.example.finalproject.domain.model.Genre
+import com.example.finalproject.data.db.WatchListMovieEntity
+import com.example.finalproject.data.network.model.GenreEntity
+import com.example.finalproject.data.network.model.MovieDetailsEntity
+import com.example.finalproject.data.network.model.MovieEntity
+import com.example.finalproject.data.network.model.VideoEntity
 import com.example.finalproject.domain.model.Movie
 import com.example.finalproject.domain.model.MovieDetails
 import com.example.finalproject.domain.model.Trailer
@@ -36,11 +36,8 @@ fun MovieDetailsEntity.mapToDomain(): MovieDetails {
     )
 }
 
-fun GenreEntity.mapToDomain(): Genre {
-    return Genre(
-        id = this.id,
-        name = this.name
-    )
+fun GenreEntity.mapToDomain(): String {
+    return this.name
 }
 
 fun VideoEntity.mapToDomain(): Video {
@@ -55,6 +52,26 @@ fun VideoEntity.mapToTrailer(): Trailer {
     return Trailer(
         name = this.name,
         url = YOUTUBE_URL + this.key
+    )
+}
+
+fun WatchListMovieEntity.mapToDomain(): Movie {
+    return Movie(
+        id = this.movie_id,
+        title = this.title,
+        posterUrl = IMAGE_URL + this.posterPath,
+        rating = null,
+        genre = this.genre
+    )
+}
+
+fun Movie.mapToWatchListEntity(): WatchListMovieEntity {
+    return WatchListMovieEntity(
+        movie_id = this.id,
+        is_favorite = false,
+        posterPath = this.posterUrl.removePrefix(YOUTUBE_URL),
+        title = this.title,
+        genre = this.genre
     )
 }
 

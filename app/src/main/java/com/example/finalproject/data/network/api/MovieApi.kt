@@ -1,8 +1,8 @@
-package com.example.finalproject.data.api
+package com.example.finalproject.data.network.api
 
-import com.example.finalproject.data.model.MovieDetailsEntity
-import com.example.finalproject.data.model.MovieResponse
-import com.example.finalproject.data.model.VideoResponse
+import com.example.finalproject.data.network.model.MovieDetailsEntity
+import com.example.finalproject.data.network.model.MovieResponse
+import com.example.finalproject.data.network.model.VideoResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

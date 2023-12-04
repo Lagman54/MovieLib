@@ -30,6 +30,10 @@ object Const {
             10752 to "War",
             37 to "Western"
         )
+    }
 
+    object DB {
+        const val DB_NAME = "movie_data_base"
+        const val DB_VERSION = 1
     }
 }

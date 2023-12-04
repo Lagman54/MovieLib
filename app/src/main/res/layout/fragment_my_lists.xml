@@ -32,7 +32,7 @@
         android:layout_weight="1" />
 
     <View
-        android:id="@+id/bottomSpace"
+        android:id="@+id/navBottomSpace"
         android:layout_width="match_parent"
         android:layout_height="56dp" />
 

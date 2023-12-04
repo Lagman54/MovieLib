@@ -1,21 +1,22 @@
-package com.example.finalproject.data.data_source
+package com.example.finalproject.data.network.data_source
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.finalproject.common.Const.Api.MOVIE_STARTING_PAGE_INDEX
-import com.example.finalproject.data.api.MovieApi
-import com.example.finalproject.data.model.MovieEntity
+import com.example.finalproject.data.network.api.MovieApi
+import com.example.finalproject.data.network.model.MovieEntity
 import retrofit2.HttpException
 import java.io.IOException
 
-class MoviePagingSource(
-    private val api: MovieApi
+class SearchMoviePagingSource(
+    private val api: MovieApi,
+    private val title: String
 ) : PagingSource<Int, MovieEntity>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MovieEntity> {
         return try {
             val position = params.key ?: MOVIE_STARTING_PAGE_INDEX
-            val response = api.getMovies(position)
+            val response = api.getMoviesByTitle(title, position)
             val movies = response.movies
             LoadResult.Page(
                 data = movies,

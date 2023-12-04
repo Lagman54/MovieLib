@@ -24,4 +24,8 @@ interface MovieRepository {
     fun getMoviesByTitle(title: String): Flow<PagingData<Movie>>
 
     suspend fun getNowPlayingMovies(): List<Movie>
+
+    fun getWatchListMovies(): Flow<List<Movie>>
+
+    fun addToWatchList(movie: Movie)
 }

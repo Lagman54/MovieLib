@@ -17,6 +17,7 @@ sealed class ListItem {
     data class Body(
         val rating: Float,
         val description: String,
+        val onClick: () -> Unit
     ) : ListItem() {
         override val itemType: Int
             get() = BODY

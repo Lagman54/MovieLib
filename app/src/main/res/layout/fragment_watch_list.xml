@@ -6,6 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:paddingTop="16dp"
+        android:clipToPadding="false"
         android:id="@+id/watchList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

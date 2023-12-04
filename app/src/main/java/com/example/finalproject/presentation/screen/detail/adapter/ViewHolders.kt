@@ -20,6 +20,10 @@ class BodyViewHolder(private val binding: ItemDetailsBodyBinding) :
         ratingbar.rating = item.rating
         ratingAverage.text = root.resources.getString(R.string.rating, item.rating)
         description.text = item.description
+
+        addToWatchListButton.setOnClickListener {
+            item.onClick.invoke()
+        }
     }
 }
 

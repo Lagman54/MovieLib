@@ -6,25 +6,34 @@ import androidx.paging.PagingData
 import androidx.paging.map
 import com.example.finalproject.common.Const.Api.MOVIES_PAGE_SIZE
 import com.example.finalproject.common.Const.Api.TRAILER
-import com.example.finalproject.data.api.MovieApi
-import com.example.finalproject.data.data_source.MoviePagingSource
-import com.example.finalproject.data.data_source.SearchMoviePagingSource
+import com.example.finalproject.data.network.api.MovieApi
+import com.example.finalproject.data.db.WatchListMovieDao
+import com.example.finalproject.data.db.WatchListMovieEntity
+import com.example.finalproject.data.network.data_source.MoviePagingSource
+import com.example.finalproject.data.network.data_source.SearchMoviePagingSource
 import com.example.finalproject.data.mapper.mapToDomain
 import com.example.finalproject.data.mapper.mapToTrailer
-import com.example.finalproject.data.model.MovieEntity
-import com.example.finalproject.data.model.VideoEntity
+import com.example.finalproject.data.mapper.mapToWatchListEntity
+import com.example.finalproject.data.network.model.MovieEntity
+import com.example.finalproject.data.network.model.VideoEntity
 import com.example.finalproject.domain.model.Movie
 import com.example.finalproject.domain.model.MovieDetails
 import com.example.finalproject.domain.model.Trailer
 import com.example.finalproject.domain.model.Video
 import com.example.finalproject.domain.repository.MovieRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MovieRepositoryImpl @Inject constructor(
-    private val api: MovieApi
+    private val api: MovieApi,
+    private val watchListMovieDao: WatchListMovieDao
 ) : MovieRepository {
+
+    private val ioScope = CoroutineScope(Dispatchers.IO)
 
     override suspend fun getPopularMovies(): List<Movie> {
         return api.getMovies(1).movies.map(MovieEntity::mapToDomain)
@@ -75,6 +84,18 @@ class MovieRepositoryImpl @Inject constructor(
 
     override suspend fun getNowPlayingMovies(): List<Movie> {
         return api.getNowPlayingMovies(1).movies.map(MovieEntity::mapToDomain)
+    }
+
+    override fun getWatchListMovies(): Flow<List<Movie>> {
+        return watchListMovieDao.getMoviesFlow().map { data ->
+            data.map(WatchListMovieEntity::mapToDomain)
+        }
+    }
+
+    override fun addToWatchList(movie: Movie) {
+        ioScope.launch {
+            watchListMovieDao.insert(movie.mapToWatchListEntity())
+        }
     }
 
 }
