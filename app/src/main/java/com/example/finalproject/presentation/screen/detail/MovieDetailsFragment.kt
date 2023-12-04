@@ -8,11 +8,14 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.finalproject.R
 import com.example.finalproject.databinding.FragmentMovieDetailsBinding
 import com.example.finalproject.presentation.image_loader.ImageLoader
 import com.example.finalproject.domain.model.MovieDetails
 import com.example.finalproject.presentation.screen.detail.adapter.ListItem
 import com.example.finalproject.presentation.screen.detail.adapter.MovieDetailsAdapter
+import com.example.finalproject.presentation.screen.detail.adapter.MovieDetailsViewPagerAdapter
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -22,7 +25,6 @@ import javax.inject.Inject
 class MovieDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentMovieDetailsBinding
-    private lateinit var adapter: MovieDetailsAdapter
     private val viewModel: MovieDetailsViewModel by viewModels()
 
     @Inject
@@ -40,30 +42,32 @@ class MovieDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.toolbar.onDrawableStartClick = { findNavController().popBackStack() }
-        setUpAdapter()
         setUpViewModel()
     }
 
-    private fun setUpAdapter() = with(binding) {
-        adapter = MovieDetailsAdapter()
-        list.adapter = adapter
-    }
-
-    private fun setUpViewModel() {
+    private fun setUpViewModel() = with(binding){
         viewModel.movieDetails.observe(viewLifecycleOwner) {
-            imageLoader.load(binding.posterImage, it.posterUrl)
-            adapter.submitList(transformData(it))
+            imageLoader.load(posterImage, it.posterUrl)
+            movieTitle.text = it.title
+            ratingbar.rating = it.rating
+            ratingAverage.text = root.resources.getString(R.string.rating, it.rating)
+            description.text = it.description
+            addToWatchListButton.setOnClickListener {
+                viewModel.addToWatchList()
+            }
+
+            viewPager.offscreenPageLimit = 2
+            viewPager.adapter = MovieDetailsViewPagerAdapter(childFragmentManager, lifecycle)
+            viewPager.isUserInputEnabled = false
+            TabLayoutMediator(topTab, viewPager) { tab, position ->
+                when(position) {
+                    0 -> tab.text = "MORE LIKE THIS"
+                    1 -> tab.text = "TRAILER"
+                }
+            }.attach()
         }
         viewModel.id = requireArguments().getInt(MOVIE_ID)
     }
-
-    private fun transformData(movie: MovieDetails) = listOf(
-        ListItem.Header(movie.title),
-        ListItem.Body(movie.rating, movie.description) {
-            viewModel.addToWatchList()
-        },
-        ListItem.ViewPager(movie.id, childFragmentManager, lifecycle)
-    )
 
     companion object {
         private const val MOVIE_ID = "id"

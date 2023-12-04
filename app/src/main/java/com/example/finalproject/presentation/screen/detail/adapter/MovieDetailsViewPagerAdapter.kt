@@ -16,8 +16,8 @@ class MovieDetailsViewPagerAdapter(
 
     override fun createFragment(position: Int): Fragment {
         return when(position) {
-            0 -> MovieTrailerFragment()
-            else -> SimilarMoviesFragment()
+            0 -> SimilarMoviesFragment()
+            else -> MovieTrailerFragment()
         }
     }
 
