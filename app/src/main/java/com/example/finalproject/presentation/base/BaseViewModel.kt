@@ -11,10 +11,10 @@ import kotlinx.coroutines.withContext
 
 abstract class BaseViewModel : ViewModel() {
 
-    private var _loadingLiveData = MutableLiveData<Boolean>()
+    protected var _loadingLiveData = MutableLiveData<Boolean>()
     val loadingLiveData: LiveData<Boolean> = _loadingLiveData
 
-    private var _exceptionLiveData = MutableLiveData<String?>()
+    protected var _exceptionLiveData = MutableLiveData<String?>()
     val exceptionLiveData: LiveData<String?> = _exceptionLiveData
 
     fun <T> launch(
@@ -23,7 +23,6 @@ abstract class BaseViewModel : ViewModel() {
     ) {
         viewModelScope.launch {
             try {
-                _loadingLiveData.postValue(true)
                 val response = withContext(Dispatchers.IO) {
                     request.invoke()
                 }
@@ -31,8 +30,6 @@ abstract class BaseViewModel : ViewModel() {
             } catch (e: Exception) {
                 _exceptionLiveData.postValue(e.message)
                 Log.e(">>>", e.message.orEmpty())
-            } finally {
-                _loadingLiveData.postValue(false)
             }
         }
     }
@@ -43,7 +40,6 @@ abstract class BaseViewModel : ViewModel() {
     ) {
         viewModelScope.launch {
             try {
-                _loadingLiveData.postValue(true)
                 val response = withContext(Dispatchers.IO) {
                     doubleRequest.invoke()
                 }
@@ -51,8 +47,6 @@ abstract class BaseViewModel : ViewModel() {
             } catch (e: Exception) {
                 _exceptionLiveData.postValue(e.message)
                 Log.e(">>>", e.message.orEmpty())
-            } finally {
-                _loadingLiveData.postValue(false)
             }
         }
     }

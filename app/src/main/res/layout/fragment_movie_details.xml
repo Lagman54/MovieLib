@@ -80,10 +80,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="12dp"
-                android:text="@string/rating"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@id/ratingbar"
-                app:layout_constraintTop_toTopOf="@id/ratingbar" />
+                app:layout_constraintTop_toTopOf="@id/ratingbar"
+                tools:text="@string/rating" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/addToWatchListButton"

@@ -28,4 +28,8 @@ interface MovieRepository {
     fun getWatchListMovies(): Flow<List<Movie>>
 
     fun addToWatchList(movie: Movie)
+
+    fun inWatchList(id: Int): Boolean
+
+    fun removeFromWatchList(id: Int)
 }

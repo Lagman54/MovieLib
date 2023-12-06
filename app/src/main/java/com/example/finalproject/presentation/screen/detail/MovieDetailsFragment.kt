@@ -1,10 +1,13 @@
 package com.example.finalproject.presentation.screen.detail
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -45,7 +48,7 @@ class MovieDetailsFragment : Fragment() {
         setUpViewModel()
     }
 
-    private fun setUpViewModel() = with(binding){
+    private fun setUpViewModel() = with(binding) {
         viewModel.movieDetails.observe(viewLifecycleOwner) {
             imageLoader.load(posterImage, it.posterUrl)
             movieTitle.text = it.title
@@ -53,19 +56,38 @@ class MovieDetailsFragment : Fragment() {
             ratingAverage.text = root.resources.getString(R.string.rating, it.rating)
             description.text = it.description
             addToWatchListButton.setOnClickListener {
-                viewModel.addToWatchList()
+                viewModel.addRemoveWatchList()
             }
 
             viewPager.offscreenPageLimit = 2
             viewPager.adapter = MovieDetailsViewPagerAdapter(childFragmentManager, lifecycle)
             viewPager.isUserInputEnabled = false
-            TabLayoutMediator(topTab, viewPager) { tab, position ->
+            TabLayoutMediator(topTab, viewPager, false, false) { tab, position ->
                 when(position) {
                     0 -> tab.text = "MORE LIKE THIS"
                     1 -> tab.text = "TRAILER"
                 }
             }.attach()
         }
+
+        viewModel.inWatchList.observe(viewLifecycleOwner) {
+            if(it == true) {
+                addToWatchListButton.apply {
+                    setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
+                    setIconTintResource(R.color.gray)
+                    setIconResource(R.drawable.baseline_done_24)
+                }
+            }
+            else {
+                addToWatchListButton.apply {
+                    setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+                    setIconTintResource(R.color.white)
+                    setIconResource(R.drawable.baseline_add_24)
+                }
+            }
+
+        }
+
         viewModel.id = requireArguments().getInt(MOVIE_ID)
     }
 

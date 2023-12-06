@@ -26,14 +26,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class MovieRepositoryImpl @Inject constructor(
     private val api: MovieApi,
     private val watchListMovieDao: WatchListMovieDao
 ) : MovieRepository {
-
-    private val ioScope = CoroutineScope(Dispatchers.IO)
 
     override suspend fun getPopularMovies(): List<Movie> {
         return api.getMovies(1).movies.map(MovieEntity::mapToDomain)
@@ -93,9 +92,13 @@ class MovieRepositoryImpl @Inject constructor(
     }
 
     override fun addToWatchList(movie: Movie) {
-        ioScope.launch {
-            watchListMovieDao.insert(movie.mapToWatchListEntity())
-        }
+        watchListMovieDao.insert(movie.mapToWatchListEntity())
+    }
+
+    override fun inWatchList(id: Int): Boolean = watchListMovieDao.getMovie(id) != null
+
+    override fun removeFromWatchList(id: Int) {
+        watchListMovieDao.remove(id)
     }
 
 }

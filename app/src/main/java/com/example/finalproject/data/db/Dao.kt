@@ -18,4 +18,7 @@ interface WatchListMovieDao {
     @Query("SELECT * FROM watch_list")
     fun getMoviesFlow(): Flow<List<WatchListMovieEntity>>
 
+    @Query("SELECT * FROM watch_list WHERE movie_id=:id")
+    fun getMovie(id: Int): WatchListMovieEntity?
+
 }
