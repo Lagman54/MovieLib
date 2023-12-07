@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.net.toUri
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.finalproject.R
 import com.example.finalproject.presentation.adapter_common.VerticalMovieAdapter
@@ -16,6 +19,8 @@ import com.example.finalproject.presentation.decoration.OffsetDecoration
 import com.example.finalproject.presentation.screen.detail.MovieDetailsFragment
 import com.example.finalproject.presentation.image_loader.ImageLoader
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -42,8 +47,18 @@ class HomeFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        hideView()
         setUpAdapters()
         setUpViewModel()
+    }
+
+    private fun hideView() = with(binding) {
+        homeScrollView.visibility = View.INVISIBLE
+    }
+
+    private fun showView() = with(binding) {
+        progressBar.visibility = View.GONE
+        homeScrollView.visibility = View.VISIBLE
     }
 
     private fun setUpAdapters() = with(binding) {
@@ -51,9 +66,9 @@ class HomeFragment : BaseFragment() {
         popularAdapter = VerticalMovieAdapter(imageLoader)
         watchListAdapter = VerticalMovieAdapter(imageLoader)
 
-        playingMoviesAdapter.onClick = onMovieClickListener()
-        popularAdapter.onClick = onMovieClickListener()
-        watchListAdapter.onClick = onMovieClickListener()
+        playingMoviesAdapter.onClick = navigateToMovieDetails()
+        popularAdapter.onClick = navigateToMovieDetails()
+        watchListAdapter.onClick = navigateToMovieDetails()
 
         recommendationsList.addItemDecoration(OffsetDecoration(start = 8))
         popularList.addItemDecoration(OffsetDecoration(start = 8))
@@ -86,11 +101,21 @@ class HomeFragment : BaseFragment() {
             }
 
             viewModel.getTrendingMovieTrailer(movieDetails.id)
+
+            showView()
         }
 
         viewModel.trendingMovieTrailer.observe(viewLifecycleOwner) { trailer ->
             watchTrailerButton.setOnClickListener {
                 startActivity(Intent(Intent.ACTION_VIEW, trailer.url.toUri()))
+            }
+        }
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.watchList.collectLatest {
+                    watchListAdapter.submitList(it)
+                }
             }
         }
 

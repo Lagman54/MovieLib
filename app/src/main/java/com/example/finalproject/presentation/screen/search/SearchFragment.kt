@@ -61,7 +61,7 @@ class SearchFragment : BaseFragment() {
 
     private fun setUpAdapter() = with(binding) {
         pagingAdapter = HorizontalMoviePagingAdapter(imageLoader)
-        pagingAdapter.onClick = onMovieClickListener()
+        pagingAdapter.onClick = navigateToMovieDetails()
 
         list.addItemDecoration(OffsetDecoration(start = 16, end = 16, top = 16))
         list.adapter = pagingAdapter

@@ -3,6 +3,7 @@ package com.example.finalproject.data.mapper
 import com.example.finalproject.common.Const.Api.IMAGE_URL
 import com.example.finalproject.common.Const.Api.YOUTUBE_URL
 import com.example.finalproject.common.Const.Api.genres
+import com.example.finalproject.common.round
 import com.example.finalproject.data.db.WatchListMovieEntity
 import com.example.finalproject.data.network.model.GenreEntity
 import com.example.finalproject.data.network.model.MovieDetailsEntity
@@ -18,7 +19,7 @@ fun MovieEntity.mapToDomain(): Movie {
         id = this.id,
         title = this.title,
         posterUrl = IMAGE_URL + this.posterPath,
-        rating = this.rating,
+        rating = (this.rating / 2).round(1),
         genre = getGenres(genreIds)
     )
 }
@@ -28,7 +29,7 @@ fun MovieDetailsEntity.mapToDomain(): MovieDetails {
         id = this.id,
         title = this.title,
         posterUrl = IMAGE_URL + this.posterPath,
-        rating = this.rating / 2,
+        rating = (this.rating / 2).round(1),
         description = this.description,
         releaseDate = this.releaseDate,
         voteCount = this.voteCount,

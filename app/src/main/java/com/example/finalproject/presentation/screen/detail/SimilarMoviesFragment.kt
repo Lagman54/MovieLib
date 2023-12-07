@@ -1,11 +1,16 @@
 package com.example.finalproject.presentation.screen.detail
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.example.finalproject.R
 import com.example.finalproject.databinding.FragmentGridMoviesBinding
+import com.example.finalproject.presentation.adapter_common.OnMovieClickListener
 import com.example.finalproject.presentation.base.BaseFragment
 import com.example.finalproject.presentation.decoration.OffsetDecoration
 import com.example.finalproject.presentation.image_loader.ImageLoader
@@ -42,7 +47,7 @@ class SimilarMoviesFragment : BaseFragment() {
 
     private fun setUpAdapter() = with(binding) {
         adapter = MovieLargeAdapter(imageLoader)
-        adapter.onClick = onMovieClickListener()
+        adapter.onClick = navigateToMovieDetails()
 
         list.addItemDecoration(OffsetDecoration(end = 8, bottom = 16))
 
@@ -52,6 +57,7 @@ class SimilarMoviesFragment : BaseFragment() {
     private fun setUpViewModel() {
         viewModel.similarMovies.observe(viewLifecycleOwner) {
             adapter.submitList(it)
+            Log.i(">>>", "$it")
         }
     }
 }

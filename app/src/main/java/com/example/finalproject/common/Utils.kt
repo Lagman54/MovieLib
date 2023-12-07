@@ -5,6 +5,7 @@ import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
+import kotlin.math.round
 
 val Int.dp
     get() = TypedValue.applyDimension(
@@ -33,4 +34,10 @@ inline fun View.setAttrs(
                 recycle()
             }
         }
+}
+
+fun Float.round(decimals: Int): Float {
+    var multiplier = 1.0f
+    repeat(decimals) { multiplier *= 10 }
+    return round(this * multiplier) / multiplier
 }

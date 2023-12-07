@@ -1,6 +1,7 @@
 package com.example.finalproject.presentation.screen.browse
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,14 +40,13 @@ class PopularFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setUpAdapter()
         setUpViewModel()
     }
 
     private fun setUpAdapter() = with(binding) {
         pagingAdapter = VerticalMoviePagingAdapter(imageLoader)
-        pagingAdapter.onClick = onMovieClickListener()
+        pagingAdapter.onClick = navigateToMovieDetails()
 
         list.addItemDecoration(OffsetDecoration(end = 8, bottom = 16))
         list.adapter = pagingAdapter

@@ -8,7 +8,7 @@ import com.example.finalproject.presentation.screen.detail.MovieDetailsFragment
 
 open class BaseFragment : Fragment() {
 
-    protected fun onMovieClickListener() = OnMovieClickListener { movieId ->
+    protected fun navigateToMovieDetails() = OnMovieClickListener { movieId ->
         findNavController().navigate(
             R.id.action_global_movieDetailsFragment4,
             MovieDetailsFragment.createBundle(id = movieId)

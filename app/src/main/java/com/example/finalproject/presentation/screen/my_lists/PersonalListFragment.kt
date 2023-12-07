@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.example.finalproject.databinding.FragmentPersonalListBinding
-import com.example.finalproject.domain.model.Movie
 import com.example.finalproject.presentation.adapter_common.HorizontalMovieAdapter
 import com.example.finalproject.presentation.base.BaseFragment
 import com.example.finalproject.presentation.decoration.OffsetDecoration
@@ -41,22 +40,10 @@ class PersonalListFragment : BaseFragment() {
         }
 
         adapter = HorizontalMovieAdapter(imageLoader)
-        adapter.onClick = onMovieClickListener()
+        adapter.onClick = navigateToMovieDetails()
 
         binding.list.adapter = adapter
         binding.list.addItemDecoration(OffsetDecoration(start = 16, end = 16, bottom = 16))
-
-        adapter.submitList(listOf(
-            Movie(),
-            Movie(),
-            Movie(),
-            Movie(),
-            Movie(),
-            Movie(),
-            Movie(),
-            Movie(),
-            Movie(),
-        ))
     }
 
     companion object {

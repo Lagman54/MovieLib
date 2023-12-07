@@ -8,6 +8,7 @@ import com.example.finalproject.domain.model.MovieDetails
 import com.example.finalproject.domain.model.Trailer
 import com.example.finalproject.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 
@@ -31,6 +32,8 @@ class HomeViewModel @Inject constructor(
     private val _trendingMovieTrailer = MutableLiveData<Trailer>()
     val trendingMovieTrailer: LiveData<Trailer>
         get() = _trendingMovieTrailer
+
+    val watchList: Flow<List<Movie>> = repository.getWatchListMovies()
 
     fun getRecommendations() {
         launch(

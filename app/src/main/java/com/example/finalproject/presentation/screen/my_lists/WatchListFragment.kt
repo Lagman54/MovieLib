@@ -9,7 +9,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.finalproject.databinding.FragmentWatchListBinding
-import com.example.finalproject.domain.model.Movie
 import com.example.finalproject.presentation.adapter_common.HorizontalMovieAdapter
 import com.example.finalproject.presentation.base.BaseFragment
 import com.example.finalproject.presentation.decoration.OffsetDecoration
@@ -48,7 +47,7 @@ class WatchListFragment : BaseFragment() {
 
     private fun setUpAdapter() = with(binding) {
         adapter = HorizontalMovieAdapter(imageLoader)
-        adapter.onClick = onMovieClickListener()
+        adapter.onClick = navigateToMovieDetails()
         watchList.addItemDecoration(OffsetDecoration(start = 16, end = 16, bottom = 16))
         watchList.adapter = adapter
     }
